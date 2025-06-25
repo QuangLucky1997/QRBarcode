@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#F57C00</color>
+    <color name="blue">#F7F8F8</color>
+    <color name="colorPrimary">@color/purple_500</color>
+    <color name="colorPrimaryDark">@color/black</color>
+    <color name="colorAccent">@color/blue</color>
+
+    <color name="trans">#00000000</color>
+
+
+
+    <color name="primaryTitleColor">#D9000000</color>
+    <color name="primaryDescriptionColor">#8C000000</color>
+    <color name="primaryDateColor">#8C000000</color>
+    <color name="primaryBackgroundColor">#FAFAFA</color>
+    <color name="primaryCardBackgroundColor">#F5F5F5</color>
+
+    <!--Night Color-->
+    <color name="colorPrimaryNight">#212121</color>
+    <color name="colorPrimaryDarkNight">#000000</color>
+    <color name="colorAccentNight">#f44336</color>
+    <color name="primaryTitleColorNight">#FFFFFF</color>
+    <color name="primaryDescriptionColorNight">#B3FFFFFF</color>
+    <color name="primaryDateColorNight">#B3FFFFFF</color>
+    <color name="primaryBackgroundColorNight">#303030</color>
+    <color name="primaryCardBackgroundColorNight">#424242</color>
+
+    <color name="green">#68B40F</color>
+
+    <color name="grey01">#1D1D1D</color>
+    <color name="white01">#CECACA</color>
+    <color name="white02">#92C9F4</color>
+
+
+
+
+
+    <item name="blue2" type="color">#FF33B5E5</item>
+    <item name="purple" type="color">#FFAA66CC</item>
+    <item name="red" type="color">#FFFF4444</item>
+    <item name="gray2" type="color">#424242</item>
+    <color name="yellow">#CAB604</color>
+    <item name="darkgreen" type="color">#FF669900</item>
+    <item name="darkorange" type="color">#FFFF8800</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/blue2</item>
+        <item>@color/purple</item>
+        <item>@color/orange</item>
+        <item>@color/red</item>
+        <item>@color/gray2</item>
+        <item>@color/yellow</item>
+        <item>@color/darkgreen</item>
+        <item>@color/darkorange</item>
+        <item>@color/darkred</item>
+    </integer-array>
+
+
+
+
+
+
+    <color name="black_10">#1A000000</color>
+    <color name="black_20">#33000000</color>
+
+    <color name="gray_300">#F1F1F1</color>
+    <color name="white_58">#94FFFFFF</color>
+
+    <color name="gray">#979797</color>
+    <color name="colorMain">#1F93E7</color>
+
+
+    <color name="color_ahead">#6B393939</color>
+    <color name="white_surface">#F6F7FF</color>
+    <color name="backgroundGreen">#28A745</color>
+    <color name="textSecondary">#767676</color>
+    <color name="gray_600">#C6C6C6</color>
+    <color name="gray_stroke">#BEBEBE</color>
+    <color name="gray_default">#ABABAB</color>
+    <color name="gray_default_25">#40ABABAB</color>
+    <color name="grayBlack">#888480</color>
+    <color name="black_default">#010101</color>
+    <color name="color_bg_lang">#E9EFF1</color>
+    <color name="gray_100">#757373</color>
+    <color name="blue_200">#ADDCFF</color>
+    <color name="black_100">#454545</color>
+    <color name="black_iap">#1F1E1E</color>
+    <color name="cardColorIap">#D1EBFE</color>
+    <color name="textColorIap">#0085E5</color>
+    <color name="backgroundRed">#E43848</color>
+    <color name="black_language">#242425</color>
+    <color name="bg_service">#C4E6FF</color>
+    <color name="text_user_name">#3AA4F1</color>
+
+    <color name="tools_theme">#599FDB</color>
+    <color name="colorMainLight">#0B0B0B</color>
+    <color name="textSecondaryLight">#767676</color>
+    <color name="textTertiaryLight">#AEB2BE</color>
+
+    <color name="tools_theme_light">#E9F5FF</color>
+
+    <color name="stroke_iap">#2EA7FD</color>
+    <color name="stroke_iap_unchoice">#686A6B</color>
+
+
+    <color name="bg_choice_iap">#D1EBFE</color>
+    <color name="bg_unchoice">#FEFEFE</color>
+
+
+    <color name="color_text_choice">#0084E4</color>
+    <color name="color_text_unchoice">#AAAAAA</color>
+
+    <color name="color_text_choice_alpha">#0084E4</color>
+    <color name="color_text_iap_gray">#AAAAAA</color>
+</resources>

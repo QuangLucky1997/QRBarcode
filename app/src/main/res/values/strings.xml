@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">QRCode2025</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="scanner_barcode">Scanner Barcode</string>
+    <string name="history_qrcode">History QRCode</string>
+    <string name="url_web">URL WEB</string>
+    <string name="open">Open</string>
+    <string name="share">Share</string>
+    <string name="copy">Copy</string>
+    <string name="text">TEXT</string>
+    <string name="sms">SMS</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="wifi">WIFI</string>
+    <string name="scan">Scan</string>
+    <string name="history">History</string>
+    <string name="setting">Setting</string>
+    <string name="phone">Phone</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="open_browser">Open browser</string>
+    <string name="send_email">Send email</string>
+    <string name="connect_wifi">Connect Wifi</string>
+    <string name="copy_pass">Copy Pass</string>
+</resources>

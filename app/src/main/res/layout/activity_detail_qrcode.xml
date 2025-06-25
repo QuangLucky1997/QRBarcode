@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@color/white01"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/shareBtn"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_share" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/typeQrImg"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textTypeQr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+
+        <TextView
+            android:id="@+id/textDetailQr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_19ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/viewTypeQrPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailQr">
+
+            <RelativeLayout
+                android:id="@+id/viewPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgPhone"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/baseline_phone_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgPhone"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/phone"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewAddContact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgAddContact"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/addcontract" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgAddContact"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/add_contact"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewCopy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopy"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopy"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/viewTypeQrUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailQr">
+
+            <RelativeLayout
+                android:id="@+id/viewOpenUrl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgOpenUrl"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/openweb" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgOpenUrl"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/open_browser"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/viewCopyUrl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopyUrl"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopyUrl"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/viewTypeTextQr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailQr">
+
+            <RelativeLayout
+                android:id="@+id/viewSendSMS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgSMS"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/sendsms" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgSMS"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/send_sms"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewSendEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgSendSMS"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/sendemail" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgSendSMS"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/send_email"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewCopyText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopyText"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopyText"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/viewTypeWifiQr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailQr">
+
+            <RelativeLayout
+                android:id="@+id/viewConnectWifi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgWifi"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/connectwifi" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgWifi"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/connect_wifi"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewCopyPass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopyPass"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/copypass" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopyPass"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy_pass"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewCopyWifi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopyWifi"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopyWifi"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/viewTypeEmailQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailQr">
+
+            <RelativeLayout
+                android:id="@+id/viewSendMail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgMail"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/mail" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgMail"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/send_email"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewaddContact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgaddContact"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/addcontract" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgaddContact"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/add_contact"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewCopyEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopyEmail"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopyEmail"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/viewTypeSMS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailQr">
+
+            <RelativeLayout
+                android:id="@+id/viewSendsms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgsms"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/sendsms" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgsms"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/send_sms"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/viewCopySMS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imgCopySMS"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgCopySMS"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/copy"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:id="@+id/imgShowQrCode"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

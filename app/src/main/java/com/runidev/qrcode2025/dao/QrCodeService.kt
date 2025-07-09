@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface QrCodeService {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun createQrCode(qrCode: QrCode): Long
 
     @Query("SELECT * FROM QrCode")
@@ -24,4 +24,8 @@ interface QrCodeService {
 
     @Query("SELECT * FROM QrCode WHERE isScan = 0")
     fun getAllQRCreate(): LiveData<List<QrCode>>
+
+    @Query("DELETE FROM QrCode WHERE idQrCode = :qrId")
+    fun deleteById(qrId: Int)
+
 }

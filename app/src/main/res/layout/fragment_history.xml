@@ -25,13 +25,25 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_18ssp" />
 
-        <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/trash" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgDelete"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/trash" />
+        </LinearLayout>
+
+
+
+
+
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout

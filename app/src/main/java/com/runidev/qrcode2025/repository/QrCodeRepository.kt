@@ -11,10 +11,15 @@ class QrCodeRepository @Inject constructor(private val qrCodeService: QrCodeServ
     val allQrCodeByCreate: LiveData<List<QrCode>> = qrCodeService.getAllQRCreate()
 
 
-    suspend fun createQrCode(qrCode: QrCode): Long {
+    fun createQrCode(qrCode: QrCode): Long {
         return qrCodeService.createQrCode(qrCode)
     }
-    suspend fun checkIfExists(data: String): Int {
+
+    fun checkIfExists(data: String): Int {
         return qrCodeService.checkIfDataExistsQrCode(data)
+    }
+
+    fun deleteQrCodeByID(id: Long) {
+        return qrCodeService.deleteById(id.toInt())
     }
 }

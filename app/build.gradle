@@ -156,8 +156,12 @@ dependencies {
     implementation(libs.barcode.scanning)
 
 
+    implementation (libs.core)
 
 
+
+
+    implementation ("com.github.creageek:segmented:1.0.0")
 
 
 

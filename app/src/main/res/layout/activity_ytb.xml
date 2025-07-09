@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/viewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"
+            tools:ignore="UseAppTint" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/create"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/_14ssp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/lineGray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/gray_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewHeader" />
+
+    <RelativeLayout
+        android:id="@+id/viewCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineGray">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardIconQRType"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_2sdp"
+            app:cardBackgroundColor="@color/bg_service"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imgIconQr"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ytb" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/nameQrCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardIconQRType"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/youtube"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/tabGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_group"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/viewCenter">
+
+        <!-- Tab URL -->
+        <TextView
+            android:id="@+id/tabUrl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_toggle_selected"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/url"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/tabIdVideo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_toggle_unselected"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/id_video"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/tabChannelId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_toggle_unselected"
+            android:gravity="center"
+            android:fontFamily="@font/inter_medium"
+            android:paddingVertical="@dimen/_10sdp"
+            android:text="@string/channel_id"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+    </LinearLayout>
+
+    <!-- Nhập ID video Youtube -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edtIdLayout"
+        android:layout_width="0dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:hint="@string/enter_id_video"
+        app:boxBackgroundMode="none"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabGroup">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtIdVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="text"
+            android:paddingBottom="@dimen/_8sdp"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <View
+        android:id="@+id/underlineVideo"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtIdLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

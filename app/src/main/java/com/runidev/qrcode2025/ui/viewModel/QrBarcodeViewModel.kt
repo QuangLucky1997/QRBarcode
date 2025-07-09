@@ -37,4 +37,9 @@ class QrBarcodeViewModel @Inject constructor(private val qrCodeRepository: QrCod
             _dataExists.postValue(count > 0)
         }
     }
+    fun deleteQrCode(id:Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            qrCodeRepository.deleteQrCodeByID(id)
+        }
+    }
 }

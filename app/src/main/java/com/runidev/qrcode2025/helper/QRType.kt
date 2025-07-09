@@ -6,5 +6,6 @@ enum class QRType {
     SMS,
     WIFI,
     GEO, EMAIL,
-    PHONE
+    PHONE,
+    BARCODE
 }

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:id="@+id/viewHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp">
+        <ImageView
+            android:tint="@color/black"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back"
+            tools:ignore="UseAppTint"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/check"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                />
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="@string/create"
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/colorMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/lineGray"
+        app:layout_constraintTop_toBottomOf="@+id/viewHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:background="@color/gray_default"
+        android:layout_height="@dimen/_1sdp"/>
+
+    <RelativeLayout
+        android:id="@+id/viewCenter"
+        app:layout_constraintTop_toBottomOf="@+id/lineGray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/_2sdp"
+            android:id="@+id/cardIconQRType"
+            app:cardElevation="@dimen/_5sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:cardBackgroundColor="@color/bg_service"
+            app:cardCornerRadius="@dimen/_10sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imgIconQr"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/connectwifi"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/nameQrCreate"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardIconQRType"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ssidInputLayout"
+        android:layout_width="0dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:hint="@string/wifi_name_ssid"
+        app:boxBackgroundMode="none"
+        app:hintEnabled="true"
+        app:hintAnimationEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/viewCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSsid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="@dimen/_12ssp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:textColor="#000000"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/tvSecurityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_security"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#808080"
+        app:layout_constraintTop_toBottomOf="@id/ssidInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+    <RadioGroup
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/securityGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvSecurityLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/rbWpa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/wpa_wpa2"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            android:background="@drawable/bg_toggle_selected"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioButton
+            android:id="@+id/rbWep"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/wep"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            android:background="@drawable/bg_toggle_unselected"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp"/>
+
+        <RadioButton
+            android:id="@+id/rbNone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/none"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            android:background="@drawable/bg_toggle_unselected"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp"/>
+    </RadioGroup>
+
+    <!-- Label Mật khẩu -->
+    <TextView
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/tvPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#808080"
+        app:layout_constraintTop_toBottomOf="@id/securityGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvPasswordLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="@dimen/_12ssp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:id="@+id/ivToggleVisibility"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/eye"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

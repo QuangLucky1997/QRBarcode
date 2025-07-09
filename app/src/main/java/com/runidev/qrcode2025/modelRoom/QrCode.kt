@@ -17,5 +17,6 @@ data class QrCode(
     @ColumnInfo(name = "TimeCreateQr") val dateTimeQrCode: String,
     @ColumnInfo(name = "ValueQRCode") val valueQrCode: String = "",
     @ColumnInfo(name = "isScan") val isScan: Boolean = false,
-    @ColumnInfo(name = "iconQrType") val iconQRType: Int
+    @ColumnInfo(name = "iconQrType") val iconQRType: Int,
+    @ColumnInfo(name = "isChecked") var isChecked: Boolean = false
 )

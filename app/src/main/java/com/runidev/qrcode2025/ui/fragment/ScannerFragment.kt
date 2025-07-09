@@ -134,10 +134,8 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
         val rawValue = barcode.rawValue ?: return
         val qrType = mapBarcodeTypeToQrType(barcode.valueType) ?: return
         val qrIconType = mapBarcodeTypeToQrIconType(barcode.valueType) ?: return
-
-        if (qrCodeService.checkIfDataExistsQrCode(rawValue) > 0) {
-            Timber.tag("Main123").e("Duplicate QR code: $rawValue")
-        } else {
+        val exists = qrCodeService.checkIfDataExistsQrCode(rawValue)
+        if (exists == 0) {
             val qrData = QrCode(
                 0,
                 qrType,
@@ -147,8 +145,10 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
                 qrIconType
             )
             qrcodeViewModel.insertQrCode(qrData)
-
+        } else {
+            //Toast.makeText(requireContext(), "Data already exists", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun mapBarcodeTypeToQrType(valueType: Int): QRType? {
@@ -160,7 +160,19 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
             Barcode.TYPE_GEO -> QRType.GEO
             Barcode.TYPE_EMAIL -> QRType.EMAIL
             Barcode.TYPE_PHONE -> QRType.PHONE
-            else -> null
+            Barcode.FORMAT_AZTEC -> QRType.BARCODE
+            Barcode.FORMAT_PDF417 -> QRType.BARCODE
+            Barcode.FORMAT_CODE_39 -> QRType.BARCODE
+            Barcode.FORMAT_CODE_93 -> QRType.BARCODE
+            Barcode.FORMAT_CODE_128 -> QRType.BARCODE
+            Barcode.FORMAT_EAN_13 -> QRType.BARCODE
+            Barcode.FORMAT_CODABAR -> QRType.BARCODE
+            Barcode.FORMAT_UPC_A -> QRType.BARCODE
+            Barcode.FORMAT_UPC_E -> QRType.BARCODE
+            Barcode.FORMAT_ITF -> QRType.BARCODE
+            Barcode.FORMAT_EAN_8 -> QRType.BARCODE
+            Barcode.FORMAT_DATA_MATRIX -> QRType.BARCODE
+            else -> QRType.TEXT
         }
     }
 
@@ -170,10 +182,22 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
             Barcode.TYPE_TEXT -> R.drawable.text_qr
             Barcode.TYPE_SMS -> R.drawable.sendsms
             Barcode.TYPE_WIFI -> R.drawable.connectwifi
-            Barcode.TYPE_GEO -> R.drawable.ic_flag_german
+            Barcode.TYPE_GEO -> R.drawable.geo
             Barcode.TYPE_EMAIL -> R.drawable.sendemail
-            Barcode.TYPE_PHONE -> R.drawable.baseline_phone_24
-            else -> null
+            Barcode.TYPE_PHONE -> R.drawable.barcode
+            Barcode.FORMAT_AZTEC -> R.drawable.barcode
+            Barcode.FORMAT_PDF417 -> R.drawable.barcode
+            Barcode.FORMAT_CODE_39 -> R.drawable.barcode
+            Barcode.FORMAT_CODE_93 -> R.drawable.barcode
+            Barcode.FORMAT_CODE_128 -> R.drawable.barcode
+            Barcode.FORMAT_EAN_13 -> R.drawable.barcode
+            Barcode.FORMAT_CODABAR -> R.drawable.barcode
+            Barcode.FORMAT_UPC_A -> R.drawable.barcode
+            Barcode.FORMAT_UPC_E -> R.drawable.barcode
+            Barcode.FORMAT_ITF -> R.drawable.barcode
+            Barcode.FORMAT_EAN_8 -> R.drawable.barcode
+            Barcode.FORMAT_DATA_MATRIX -> R.drawable.barcode
+            else -> R.drawable.baseline_phone_24
         }
     }
 
@@ -188,6 +212,7 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
     fun onCameraPermissionGranted() {
         if (isAdded && !isCameraInitialized) {
             startCamera()
+            startAnimation()
         }
     }
 

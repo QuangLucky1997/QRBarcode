@@ -1,13 +1,23 @@
 package com.runidev.qrcode2025.ui.activity
 
+import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
+import android.window.OnBackInvokedDispatcher
 import androidx.core.view.isGone
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
 import com.runidev.qrcode2025.R
 import com.runidev.qrcode2025.base.BaseActivity
 import com.runidev.qrcode2025.databinding.ActivityDetailQrcodeBinding
 import com.runidev.qrcode2025.helper.lightStatusBar
+import com.runidev.qrcode2025.util.parseMail
+import com.runidev.qrcode2025.util.parseSmsUri
+import com.runidev.qrcode2025.util.parseWifiString
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.core.graphics.createBitmap
+import com.runidev.qrcode2025.util.ext.clicks
 
 
 @AndroidEntryPoint
@@ -22,24 +32,38 @@ class ShowDetailQrActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lightStatusBar()
-        window.statusBarColor = Color.WHITE
+        window.statusBarColor = getColor(R.color.white01)
         showDataQr()
+        initHandle()
     }
 
+    private fun initHandle() {
+        binding.apply {
+            backBtn.clicks {
+                finish()
+            }
+            shareBtn.clicks {
+
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun showDataQr() {
         val dataQR = intent.getStringExtra(getDataQr)
         val dataTypeQR = intent.getStringExtra(typeDataQR)
         when (dataTypeQR) {
             "URL" -> {
+                binding.textDetailQr.text = dataQR
                 binding.typeQrImg.setImageResource(R.drawable.url)
                 binding.textTypeQr.text = "URL"
-                binding.textDetailQr.text = dataQR
                 binding.viewTypeTextQr.isGone = true
                 binding.viewTypeQrUrl.isGone = false
                 binding.viewTypeWifiQr.isGone = true
                 binding.viewTypeEmailQR.isGone = true
                 binding.viewTypeQrPhone.isGone = true
                 binding.viewTypeSMS.isGone = true
+                binding.imgShowQrCode.setImageBitmap(generateQRCode(dataQR.toString()))
             }
 
             "TEXT" -> {
@@ -52,30 +76,45 @@ class ShowDetailQrActivity :
                 binding.viewTypeEmailQR.isGone = true
                 binding.viewTypeQrPhone.isGone = true
                 binding.viewTypeSMS.isGone = true
+                binding.imgShowQrCode.setImageBitmap(generateQRCode(dataQR.toString()))
             }
 
             "SMS" -> {
+                val result = parseSmsUri(dataQR.toString())
+                if (result != null) {
+                    binding.textDetailQr.text =
+                        "Phone:${result.phoneNumber}\nMessage:${result.message}"
+                } else {
+                    println("Error!")
+                }
                 binding.typeQrImg.setImageResource(R.drawable.sendsms)
                 binding.textTypeQr.text = "SMS"
-                binding.textDetailQr.text = dataQR
                 binding.viewTypeTextQr.isGone = true
                 binding.viewTypeSMS.isGone = false
                 binding.viewTypeQrUrl.isGone = true
                 binding.viewTypeWifiQr.isGone = true
                 binding.viewTypeEmailQR.isGone = true
                 binding.viewTypeQrPhone.isGone = true
+                binding.imgShowQrCode.setImageBitmap(generateQRCode(dataQR.toString()))
             }
 
             "WIFI" -> {
+                val wifiData = parseWifiString(dataQR.toString())
+                if (wifiData != null) {
+                    binding.textDetailQr.text =
+                        "Wifi Name : ${wifiData.ssid} \nTypeSecurity :${wifiData.encryptionType} "
+                } else {
+                    println("Error!")
+                }
                 binding.typeQrImg.setImageResource(R.drawable.connectwifi)
                 binding.textTypeQr.text = "WIFI"
-                binding.textDetailQr.text = dataQR
                 binding.viewTypeTextQr.isGone = true
                 binding.viewTypeQrUrl.isGone = true
                 binding.viewTypeWifiQr.isGone = false
                 binding.viewTypeEmailQR.isGone = true
                 binding.viewTypeQrPhone.isGone = true
                 binding.viewTypeSMS.isGone = true
+                binding.imgShowQrCode.setImageBitmap(generateQRCode(dataQR.toString()))
             }
 
             "PHONE" -> {
@@ -88,18 +127,26 @@ class ShowDetailQrActivity :
                 binding.viewTypeEmailQR.isGone = true
                 binding.viewTypeQrPhone.isGone = false
                 binding.viewTypeSMS.isGone = true
+                binding.imgShowQrCode.setImageBitmap(generateQRCode(dataQR.toString()))
             }
 
             "EMAIL" -> {
+                val emailData = parseMail(dataQR.toString())
+                if (emailData != null) {
+                    binding.textDetailQr.text =
+                        "Email: ${emailData.to}  \nSubject: ${emailData.subject}  \nBody: ${emailData.body} "
+                } else {
+                    println("Error!")
+                }
                 binding.typeQrImg.setImageResource(R.drawable.mail)
                 binding.textTypeQr.text = "EMAIL"
-                binding.textDetailQr.text = dataQR
                 binding.viewTypeTextQr.isGone = true
                 binding.viewTypeQrUrl.isGone = true
                 binding.viewTypeWifiQr.isGone = true
                 binding.viewTypeEmailQR.isGone = false
                 binding.viewTypeQrPhone.isGone = true
                 binding.viewTypeSMS.isGone = true
+                binding.imgShowQrCode.setImageBitmap(generateQRCode(dataQR.toString()))
             }
 
             "GEO" -> {
@@ -111,6 +158,22 @@ class ShowDetailQrActivity :
         }
 
 
+    }
+
+    fun generateQRCode(text: String, width: Int = 512, height: Int = 512): Bitmap {
+        val bitMatrix = MultiFormatWriter().encode(
+            text,
+            BarcodeFormat.QR_CODE,
+            width,
+            height
+        )
+        return createBitmap(width, height, Bitmap.Config.RGB_565).apply {
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
+                }
+            }
+        }
     }
 
 

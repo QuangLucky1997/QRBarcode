@@ -6,11 +6,12 @@ import com.bumptech.glide.Glide
 import com.runidev.qrcode2025.base.BaseAdapter
 import com.runidev.qrcode2025.databinding.ItemListCreateQrBinding
 import com.runidev.qrcode2025.helper.QrCreate
+import com.runidev.qrcode2025.util.ext.clicks
 import javax.inject.Inject
 
 class ListCreateTypeQrAdapter @Inject constructor() :
     BaseAdapter<QrCreate, ItemListCreateQrBinding>() {
-    var subjectCreateQr: ((QrCreate) -> Unit)? = null
+     var subjectCreateQr: ((QrCreate) -> Unit)? = null
 
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemListCreateQrBinding
@@ -24,6 +25,9 @@ class ListCreateTypeQrAdapter @Inject constructor() :
         binding.apply {
             Glide.with(root.context).load(item.iconRes).into(imgIconQr)
             nameQrCreate.text = item.label
+            viewCreateQR.clicks {
+                subjectCreateQr?.invoke(item)
+            }
         }
     }
 

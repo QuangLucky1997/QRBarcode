@@ -12,6 +12,8 @@ class SharedQrIconViewModel @Inject constructor() : ViewModel() {
     private val _isNewIconEnabled = MutableLiveData(false)
     val isNewIconEnabled: LiveData<Boolean> get() = _isNewIconEnabled
 
+
+
     fun toggleIcon() {
         _isNewIconEnabled.value = !(_isNewIconEnabled.value ?: false)
     }

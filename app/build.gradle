@@ -152,6 +152,7 @@ dependencies {
     implementation("androidx.camera:camera-extensions:${cameraxVersion}")
     implementation("com.google.guava:guava:29.0-android")
     implementation(libs.zxing.android.embedded)
+    implementation 'com.github.Ajinkrishnak:CountryCodePicker:1.0.2'
 
     implementation(libs.barcode.scanning)
 

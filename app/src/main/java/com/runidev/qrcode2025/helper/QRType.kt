@@ -7,5 +7,10 @@ enum class QRType {
     WIFI,
     GEO, EMAIL,
     PHONE,
-    BARCODE
+    BARCODE,
+    FACEBOOK,
+    YOUTUBE,
+    PAYPAL,
+    INSTAGRAM, VIBER, TWITTER, SPOTIFY, CLIPBOARD
+
 }

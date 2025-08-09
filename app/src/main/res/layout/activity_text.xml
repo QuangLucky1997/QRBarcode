@@ -16,37 +16,39 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:tint="@color/black"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            tools:ignore="UseAppTint"
-            android:layout_margin="@dimen/_10sdp"
+            android:id="@+id/bacKImg"
             android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"/>
-
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back"
+            android:padding="@dimen/_2sdp"
+            android:tint="@color/black"
+            tools:ignore="UseAppTint" />
 
         <LinearLayout
             android:id="@+id/tabCreate"
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+
             <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/check"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                />
+                android:src="@drawable/check" />
+
             <TextView
-                android:layout_gravity="center_vertical"
-                android:text="@string/create"
-                android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/inter_bold"
-                android:textColor="@color/colorMain"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/create"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -87,7 +89,7 @@
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/sendsms" />
+                    android:src="@drawable/text_qr" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
@@ -101,70 +103,31 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/inter_medium"
-            android:text="@string/sms"
+            android:text="@string/text"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@+id/viewCenter"
+    <RelativeLayout
+        android:background="@drawable/bg_rounded_constraint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/viewCenter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/phoneNumberText"
-            android:inputType="phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone_number"
-            android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/inter_medium"
-            android:textColor="@color/gray" />
-
+        android:layout_height="@dimen/_100sdp">
         <EditText
-            android:id="@+id/edtPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@null"
-            android:inputType="phone"
-            android:textSize="@dimen/_14ssp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/green" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/text_message"
-            android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/inter_medium"
-            android:textColor="@color/gray"/>
-
-        <EditText
-            android:id="@+id/edtMessage"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/bg_tab_group"
-            android:gravity="top|start"
-            android:padding="@dimen/_10sdp"
+            android:id="@+id/edtText"
+            android:layout_margin="@dimen/_10sdp"
             android:hint="@string/please_enter_something"
-            android:inputType="textMultiLine"
-            android:maxLines="5"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray"
-            android:textSize="@dimen/_14ssp" />
+            android:background="@null"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:paddingBottom="@dimen/_55ssp"
+            android:textSize="@dimen/_12ssp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

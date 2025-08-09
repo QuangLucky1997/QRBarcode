@@ -19,7 +19,6 @@ enum class QrCreate (val label: String, @DrawableRes val iconRes: Int){
 
     PAYPAL("Paypal", R.drawable.paypal),
     INSTAGRAM("Instagram", R.drawable.instagram),
-    VIBER("Viber", R.drawable.viber),
 
     TWITTER("Twitter", R.drawable.x),
     SPOTIFY("Spotify", R.drawable.spotify)

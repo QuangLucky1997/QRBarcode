@@ -51,4 +51,16 @@
     <string name="link_me">Link Me</string>
     <string name="username_me">Username Me</string>
     <string name="id_facebook">ID Facebook</string>
+    <string name="save">Save</string>
+    <string name="enter_url">Enter Url</string>
+    <string name="https">https://</string>
+    <string name="login_name">Login Name</string>
+    <string name="input_username_instagram">Input UserName Instagram</string>
+    <string name="instagram">Instagram</string>
+    <string name="loginname">LoginName</string>
+    <string name="spotify">Spotify</string>
+    <string name="name_artist">Name Artist</string>
+    <string name="name_song">Name Song</string>
+    <string name="name_network">Name Network</string>
+    <string name="viber">Viber</string>
 </resources>

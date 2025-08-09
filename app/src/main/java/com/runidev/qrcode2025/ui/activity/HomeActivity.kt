@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.app.OnNewIntentProvider
 
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
@@ -65,6 +66,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
         checkCameraPermission()
     }
 
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        intent.let {
+            val selectedTab = it.getIntExtra("selected_tab", 0)
+            binding.viewPaper.setCurrentItem(selectedTab, false)
+        }
+    }
+
+
+
     private fun initView() {
         binding.viewPaper.adapter = homeViewPaperAdapter
         binding.viewPaper.setUserInputEnabled(false)
@@ -110,9 +122,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
 
     }
 
-     fun checkCameraPermission() {
+
+    fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             ActivityCompat.requestPermissions(
                 this,
                 permissions,
@@ -120,6 +134,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
             )
         }
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -138,11 +153,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
             }
         }
     }
-
-
-
-
-
 
 
 }

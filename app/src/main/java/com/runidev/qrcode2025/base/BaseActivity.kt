@@ -1,5 +1,6 @@
 package com.runidev.qrcode2025.base
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,9 +21,11 @@ open class BaseActivity<VB : ViewBinding>(
         window.navigationBarColor = Color.WHITE
     }
 
+
     open fun onCreateView() {
 
     }
+
 
 
 }

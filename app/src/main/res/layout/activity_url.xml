@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -22,7 +23,9 @@
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"/>
 
+
         <LinearLayout
+            android:id="@+id/tabCreate"
             android:orientation="horizontal"
             android:layout_margin="@dimen/_10sdp"
             android:layout_centerVertical="true"
@@ -103,30 +106,22 @@
     </RelativeLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="0dp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_height="wrap_content"
-        android:hint="@string/url"
-        app:boxBackgroundMode="none"
-        app:layout_constraintTop_toBottomOf="@id/viewCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_20sdp">
 
-        <com.google.android.material.textfield.TextInputEditText
+
+        <EditText
+            app:layout_constraintTop_toBottomOf="@+id/viewCenter"
             android:id="@+id/edtUrl"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:hint="@string/https"
             android:inputType="textUri"
             android:textColor="#000000"
             android:textSize="@dimen/_14ssp"
             android:paddingBottom="@dimen/_8sdp"
             android:paddingTop="@dimen/_8sdp"
             android:drawablePadding="@dimen/_8sdp" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <View
         android:id="@+id/underline"
@@ -134,43 +129,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/edtUrl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="0dp"/>
 
-    <!-- Hai nút "www." và ".com" -->
-    <LinearLayout
-        android:layout_margin="@dimen/_5sdp"
-        android:id="@+id/btnGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/underline"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/btnWww"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="@string/www"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:background="@drawable/bg_button_light"
-            android:layout_marginEnd="8dp"/>
-
-        <TextView
-            android:id="@+id/btnCom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="@string/com"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:background="@drawable/bg_button_light"/>
-    </LinearLayout>
 
 
 

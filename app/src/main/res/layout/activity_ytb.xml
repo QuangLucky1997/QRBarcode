@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,15 +16,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/bacKImg"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/_10sdp"
             android:src="@drawable/ic_back"
+            android:padding="@dimen/_2sdp"
             android:tint="@color/black"
             tools:ignore="UseAppTint" />
 
         <LinearLayout
+            android:id="@+id/tabCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -32,8 +36,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/check" />
 
@@ -44,7 +48,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/create"
                 android:textColor="@color/colorMain"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -106,84 +110,155 @@
     </RelativeLayout>
 
 
-    <LinearLayout
-        android:layout_margin="@dimen/_10sdp"
-        android:id="@+id/tabGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_tab_group"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/_4sdp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.cardview.widget.CardView
         app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/viewCenter">
-
-        <!-- Tab URL -->
-        <TextView
-            android:id="@+id/tabUrl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bg_toggle_selected"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_10sdp"
-            android:text="@string/url"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp" />
-
-        <TextView
-            android:id="@+id/tabIdVideo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bg_toggle_unselected"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_10sdp"
-            android:text="@string/id_video"
-            android:textColor="@color/black"
-            android:fontFamily="@font/inter_medium"
-            android:textSize="@dimen/_12ssp" />
-
-        <TextView
-            android:id="@+id/tabChannelId"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bg_toggle_unselected"
-            android:gravity="center"
-            android:fontFamily="@font/inter_medium"
-            android:paddingVertical="@dimen/_10sdp"
-            android:text="@string/channel_id"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
-    </LinearLayout>
-
-    <!-- Nhập ID video Youtube -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edtIdLayout"
-        android:layout_width="0dp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:hint="@string/enter_id_video"
-        app:boxBackgroundMode="none"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabGroup">
+        android:id="@+id/segmentYtb"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_14sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@+id/viewCenter">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtIdVideo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:inputType="text"
-            android:paddingBottom="@dimen/_8sdp"
-            android:textColor="#000000"
-            android:textSize="@dimen/_12ssp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/viewUrl"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/gray"
+                    android:text="@string/url"
+                    android:textSize="@dimen/_8ssp"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardUrl"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/blue3"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardElevation="@dimen/_4sdp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/white"
+                            android:text="@string/url"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewIDVideo"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/gray"
+                    android:text="@string/id_video"
+                    android:textSize="@dimen/_8ssp"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/cardIDVideo"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/blue3"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardElevation="@dimen/_4sdp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/white"
+                            android:text="@string/id_video"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewChannelID"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/gray"
+                    android:text="@string/channel_id"
+                    android:textSize="@dimen/_8ssp"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/cardChannelID"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/blue3"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardElevation="@dimen/_4sdp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/white"
+                            android:text="@string/channel_id"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        app:layout_constraintTop_toBottomOf="@+id/segmentYtb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/edtYtbIdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:hint="@string/enter_url"
+        android:padding="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:textColor="#000000"
+        android:textSize="@dimen/_12ssp" />
+
     <View
         android:id="@+id/underlineVideo"
         android:layout_width="0dp"
@@ -192,6 +267,6 @@
         android:background="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtIdLayout" />
+        app:layout_constraintTop_toBottomOf="@id/edtYtbIdLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

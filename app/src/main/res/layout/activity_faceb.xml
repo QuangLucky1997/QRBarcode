@@ -1,77 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/white">
 
 
     <RelativeLayout
         android:id="@+id/viewHeader"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp">
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
-            android:tint="@color/black"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            tools:ignore="UseAppTint"
-            android:layout_margin="@dimen/_10sdp"
+            android:id="@+id/bacKImg"
             android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"/>
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_back"
+            android:padding="@dimen/_2sdp"
+            android:tint="@color/black"
+            tools:ignore="UseAppTint" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/tabCreate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+
             <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/check"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                />
+                android:src="@drawable/check" />
+
             <TextView
-                android:layout_gravity="center_vertical"
-                android:text="@string/create"
-                android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/inter_bold"
-                android:textColor="@color/colorMain"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/create"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
     </RelativeLayout>
+
     <View
         android:id="@+id/lineGray"
-        app:layout_constraintTop_toBottomOf="@+id/viewHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
         android:background="@color/gray_default"
-        android:layout_height="@dimen/_1sdp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewHeader" />
 
     <RelativeLayout
         android:id="@+id/viewCenter"
-        app:layout_constraintTop_toBottomOf="@+id/lineGray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineGray">
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="@dimen/_2sdp"
             android:id="@+id/cardIconQRType"
-            app:cardElevation="@dimen/_5sdp"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_2sdp"
             app:cardBackgroundColor="@color/bg_service"
-            app:cardCornerRadius="@dimen/_10sdp">
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -81,8 +88,8 @@
                     android:id="@+id/imgIconQr"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/faceb"
-                    android:layout_centerInParent="true" />
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/faceb" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
@@ -90,81 +97,139 @@
 
         <TextView
             android:id="@+id/nameQrCreate"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="@string/facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardIconQRType"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/inter_medium"
+            android:text="@string/facebook"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp" />
 
     </RelativeLayout>
 
-    <com.creageek.segmentedbutton.SegmentedButton
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@+id/viewCenter"
-        android:id="@+id/segmentFacebook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:rippleColorChecked="#6DAEDB"
-        app:borderWidth="0dp"
-        app:cornerRadius="24dp"
-        app:segmentColor="#C7BFBF"
-        app:segmentColorChecked="@color/green"
-        app:spreadType="evenly"
-        app:segmentFont="@font/inter_medium"
-        app:textColor="@color/black"
-        app:textColorChecked="@color/green">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/id_facebook"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/url"/>
-
-
-    </com.creageek.segmentedbutton.SegmentedButton>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edtFacebookIdLayout"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_id_facebook"
-        app:boxBackgroundMode="none"
-        app:hintEnabled="true"
-        app:hintAnimationEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/segmentFacebook"
+    <androidx.cardview.widget.CardView
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_24sdp">
+        android:id="@+id/segmentFacebook"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_14sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@+id/viewCenter">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtFacebookId"
-            android:padding="@dimen/_10sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:inputType="text"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="#000000"
-            android:paddingBottom="@dimen/_8sdp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/viewFacebook"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/gray"
+                    android:text="@string/id_facebook"
+                    android:textSize="@dimen/_8ssp"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFacebook"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/blue3"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardElevation="@dimen/_4sdp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/white"
+                            android:text="@string/id_facebook"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewUrl"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/gray"
+                    android:text="@string/url"
+                    android:textSize="@dimen/_8ssp"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/cardUrl"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/blue3"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:cardElevation="@dimen/_4sdp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/white"
+                            android:text="@string/url"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <EditText
+        app:layout_constraintTop_toBottomOf="@+id/segmentFacebook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/edtFacebookIdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:inputType="text"
+        android:hint="@string/enter_id_facebook"
+        android:padding="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:textColor="#000000"
+        android:textSize="@dimen/_12ssp" />
+
     <View
         android:id="@+id/underlineFb"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
         android:background="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/edtFacebookIdLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/edtFacebookIdLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

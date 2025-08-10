@@ -63,4 +63,7 @@
     <string name="name_song">Name Song</string>
     <string name="name_network">Name Network</string>
     <string name="viber">Viber</string>
+    <string name="input_your_number">Input your number</string>
+    <string name="email">Email</string>
+    <string name="input_your_email">Input your email</string>
 </resources>

@@ -98,6 +98,24 @@ class ShowDetailCreateActivity :
                     imgIconQr.setImageResource(R.drawable.ytb)
                     typeQRCreate.text = QRType.YOUTUBE.name
                 }
+                QRType.VIBER.name->{
+                    imgIconQr.setImageResource(R.drawable.viber)
+                    typeQRCreate.text = QRType.VIBER.name
+                }
+
+                QRType.INSTAGRAM.name->{
+                    imgIconQr.setImageResource(R.drawable.instagram)
+                    typeQRCreate.text = QRType.INSTAGRAM.name
+                }
+
+                QRType.SPOTIFY.name->{
+                    imgIconQr.setImageResource(R.drawable.spotify)
+                    typeQRCreate.text = QRType.SPOTIFY.name
+                }
+                QRType.TWITTER.name->{
+                    imgIconQr.setImageResource(R.drawable.x)
+                    typeQRCreate.text = QRType.TWITTER.name
+                }
 
             }
             dataQrCreate.text = dataQr

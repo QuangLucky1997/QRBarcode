@@ -43,8 +43,8 @@ class SpotifyActivity
                     if (checkExistData == 0) {
                         val dataSMS = edtNameArtist.text.toString() + "-${edtNameSong.text}"
                         val clipboardModel = QrCode(
-                            0, QRType.SMS, timestampToString(System.currentTimeMillis()),
-                            dataSMS, false, R.drawable.sendsms, false
+                            0, QRType.SPOTIFY, timestampToString(System.currentTimeMillis()),
+                            dataSMS, false, R.drawable.spotify, false
                         )
                         createQrViewModel.insertQrCode(clipboardModel)
                         val intent =
@@ -55,7 +55,7 @@ class SpotifyActivity
                         )
                         intent.putExtra(
                             ShowDetailCreateActivity.typeQrCreate,
-                            QRType.SMS.name
+                            QRType.SPOTIFY.name
                         )
                         startActivity(intent)
                     } else {

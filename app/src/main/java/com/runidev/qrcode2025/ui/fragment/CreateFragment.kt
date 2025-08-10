@@ -19,6 +19,7 @@ import com.runidev.qrcode2025.ui.activity.ScannerActivity
 import com.runidev.qrcode2025.ui.activity.ShowDetailQrActivity
 import com.runidev.qrcode2025.ui.activity.SpotifyActivity
 import com.runidev.qrcode2025.ui.activity.TextActivity
+import com.runidev.qrcode2025.ui.activity.ViberActivity
 import com.runidev.qrcode2025.ui.activity.WebActivity
 import com.runidev.qrcode2025.ui.activity.WifiActivity
 import com.runidev.qrcode2025.ui.activity.XActivity
@@ -32,7 +33,6 @@ import javax.inject.Inject
 class CreateFragment : BaseFragment<FragmentCreateBinding>() {
     @Inject
     lateinit var adapterQrCreate: ListCreateTypeQrAdapter
-    private val homeActivity by lazy { HomeActivity() }
     override val _binding: (LayoutInflater, ViewGroup?, Boolean) -> FragmentCreateBinding
         get() = FragmentCreateBinding::inflate
 
@@ -61,6 +61,7 @@ class CreateFragment : BaseFragment<FragmentCreateBinding>() {
                 "Spotify" -> moveActivity(SpotifyActivity())
                 "Text" -> moveActivity(TextActivity())
                 "Phone" -> moveActivity(PhoneActivity())
+                "Viber" -> moveActivity(ViberActivity())
             }
         }
     }

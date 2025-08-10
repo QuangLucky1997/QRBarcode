@@ -21,6 +21,7 @@ enum class QrCreate (val label: String, @DrawableRes val iconRes: Int){
     INSTAGRAM("Instagram", R.drawable.instagram),
 
     TWITTER("Twitter", R.drawable.x),
-    SPOTIFY("Spotify", R.drawable.spotify)
+    SPOTIFY("Spotify", R.drawable.spotify),
+    VIBER("Viber",R.drawable.viber)
 
 }

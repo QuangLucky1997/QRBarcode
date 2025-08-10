@@ -2,14 +2,12 @@ package com.runidev.qrcode2025.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
-import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.isGone
 import com.runidev.qrcode2025.R
 import com.runidev.qrcode2025.base.BaseActivity
 import com.runidev.qrcode2025.dao.QrCodeService
-import com.runidev.qrcode2025.databinding.ActivityInstagramBinding
+import com.runidev.qrcode2025.databinding.ActivityEmailBinding
 import com.runidev.qrcode2025.helper.QRType
 import com.runidev.qrcode2025.helper.lightStatusBar
 import com.runidev.qrcode2025.modelRoom.QrCode
@@ -20,62 +18,45 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class InstagramActivity  : BaseActivity<ActivityInstagramBinding>(ActivityInstagramBinding::inflate){
-
-    @Inject lateinit var qrCodeService: QrCodeService
-    private val qrCodeViewModel : QrBarcodeViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class MailActivity : BaseActivity<ActivityEmailBinding>(ActivityEmailBinding::inflate){
+    private val createQrViewModel: QrBarcodeViewModel by viewModels()
+    @Inject
+    lateinit var qrCodeService: QrCodeService
+    override fun onCreateView() {
+        super.onCreateView()
         lightStatusBar()
         window.statusBarColor = Color.WHITE
-        initChangeView()
         initHandleEvent()
-    }
 
-
-    private fun initChangeView() {
-        binding.apply {
-            viewUrl.clicks {
-                cardLoginName.isGone = true
-                cardUrl.isGone = false
-            }
-            viewLoginName.clicks {
-                cardLoginName.isGone = false
-                cardUrl.isGone = true
-            }
-            bacKImg.clicks {
-                finish()
-            }
-        }
     }
 
     private fun initHandleEvent() {
         binding.apply {
             tabCreate.clicks {
-                val dataClipBoard = edtInstagram.text.toString().isNotEmpty()
+                val dataClipBoard = edtMail.text.toString().isNotEmpty()
                 if (dataClipBoard) {
                     val checkExistData =
-                        qrCodeService.checkIfDataExistsQrCode(edtInstagram.text.toString())
+                        qrCodeService.checkIfDataExistsQrCode(edtMail.text.toString())
                     if (checkExistData == 0) {
                         val clipboardModel = QrCode(
-                            0, QRType.INSTAGRAM, timestampToString(System.currentTimeMillis()),
-                            edtInstagram.text.toString(), false, R.drawable.instagram, false
+                            0, QRType.EMAIL, timestampToString(System.currentTimeMillis()),
+                            edtMail.text.toString(), false, R.drawable.mail, false
                         )
-                        qrCodeViewModel.insertQrCode(clipboardModel)
+                        createQrViewModel.insertQrCode(clipboardModel)
                         val intent =
-                            Intent(this@InstagramActivity, ShowDetailCreateActivity::class.java)
+                            Intent(this@MailActivity, ShowDetailCreateActivity::class.java)
                         intent.putExtra(
                             ShowDetailCreateActivity.dataQrCreate,
-                            edtInstagram.text.toString()
+                            edtMail.text.toString()
                         )
                         intent.putExtra(
                             ShowDetailCreateActivity.typeQrCreate,
-                            QRType.INSTAGRAM.name
+                            QRType.EMAIL.name
                         )
                         startActivity(intent)
                     } else {
                         Toast.makeText(
-                            this@InstagramActivity,
+                            this@MailActivity,
                             "Data already exists !!",
                             Toast.LENGTH_SHORT
                         ).show()
@@ -83,7 +64,7 @@ class InstagramActivity  : BaseActivity<ActivityInstagramBinding>(ActivityInstag
 
                 } else {
                     Toast.makeText(
-                        this@InstagramActivity,
+                        this@MailActivity,
                         "Data is not empty!!",
                         Toast.LENGTH_SHORT
                     ).show()

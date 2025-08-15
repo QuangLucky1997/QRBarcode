@@ -79,13 +79,5 @@ class ClipboardActivity :
             }
 
         }
-
-
-//        val clipBoardManager = this.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-//        clipBoardManager.addPrimaryClipChangedListener {
-//            val copiedString = clipBoardManager.primaryClip?.getItemAt(0)?.text?.toString()
-//
-//        }
-
     }
 }

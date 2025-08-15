@@ -105,6 +105,8 @@
     </RelativeLayout>
 
     <EditText
+        android:paddingBottom="@dimen/_100sdp"
+        android:paddingStart="@dimen/_20sdp"
         app:layout_constraintTop_toBottomOf="@+id/viewCenter"
         android:id="@+id/edtClipBoard"
         android:layout_width="match_parent"
@@ -112,7 +114,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="@dimen/_200sdp"
         android:hint="@string/enter_your_text"
-        android:padding="@dimen/_16sdp"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"

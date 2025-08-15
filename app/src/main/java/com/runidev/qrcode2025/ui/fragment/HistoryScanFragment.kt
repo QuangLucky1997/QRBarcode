@@ -4,6 +4,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,6 @@ class HistoryScanFragment : BaseFragment<FragmentScanHistoryBinding>() {
 
     private fun setupRecyclerView() {
         binding.rvScanHistory.adapter = adapterHistoryScan
-
         adapterHistoryScan.onSelectionChanged = { selected ->
             sharedViewModel.updateHasSelectedItems(selected.isNotEmpty())
         }
@@ -56,7 +56,10 @@ class HistoryScanFragment : BaseFragment<FragmentScanHistoryBinding>() {
     private fun observeQrCodeData() {
         qrBarcodeViewModel.scannedQrCodes.observe(viewLifecycleOwner) { qrCodes ->
             if (qrCodes.isNotEmpty()) {
+                binding.groupViewNoData.isGone = true
                 adapterHistoryScan.data = qrCodes.toMutableList()
+            } else {
+                binding.groupViewNoData.isGone = false
             }
         }
     }
@@ -77,7 +80,7 @@ class HistoryScanFragment : BaseFragment<FragmentScanHistoryBinding>() {
 
     private fun showConfirmDeleteDialog() {
         dialogConfirmDelete.show(requireActivity().supportFragmentManager, "confirm_delete")
-        dialogConfirmDelete.actionDelete ={
+        dialogConfirmDelete.actionDelete = {
             val selectedItems = adapterHistoryScan.getSelectedItems()
             for (dataID in selectedItems) {
                 qrBarcodeViewModel.deleteQrCode(dataID.idQrCode)

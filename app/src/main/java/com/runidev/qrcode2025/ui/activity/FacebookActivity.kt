@@ -58,7 +58,7 @@ class FacebookActivity : BaseActivity<ActivityFacebBinding>(ActivityFacebBinding
                         qrCodeService.checkIfDataExistsQrCode(edtFacebookIdLayout.text.toString())
                     if (checkExistData == 0) {
                         val clipboardModel = QrCode(
-                            0, QRType.TEXT, timestampToString(System.currentTimeMillis()),
+                            0, QRType.FACEBOOK, timestampToString(System.currentTimeMillis()),
                             edtFacebookIdLayout.text.toString(), false, R.drawable.faceb, false
                         )
                         createQrViewModel.insertQrCode(clipboardModel)

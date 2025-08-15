@@ -19,4 +19,33 @@
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_list_scan_qr_history" />
 
+    <LinearLayout
+        android:id="@+id/groupViewNoData"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/nodata"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="@string/no_data"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_20ssp"
+            android:fontFamily="@font/inter_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

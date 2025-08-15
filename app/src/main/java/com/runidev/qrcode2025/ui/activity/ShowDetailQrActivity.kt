@@ -4,7 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.window.OnBackInvokedDispatcher
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isGone
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
@@ -17,12 +18,36 @@ import com.runidev.qrcode2025.util.parseSmsUri
 import com.runidev.qrcode2025.util.parseWifiString
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.graphics.createBitmap
+import com.runidev.qrcode2025.util.ContactUtils
 import com.runidev.qrcode2025.util.ext.clicks
+import com.runidev.qrcode2025.util.getWifiPasswordOrNull
+import com.runidev.qrcode2025.util.openURL
+import com.runidev.qrcode2025.util.openWifiSettings
+import com.runidev.qrcode2025.util.regexPhoneNumberAndText
+import kotlin.toString
 
 
 @AndroidEntryPoint
 class ShowDetailQrActivity :
     BaseActivity<ActivityDetailQrcodeBinding>(ActivityDetailQrcodeBinding::inflate) {
+
+    private val pickContactLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                result.data?.data?.let { contactUri ->
+                    val phoneNumber = ContactUtils.getPhoneNumberFromUri(this, contactUri)
+                    if (phoneNumber != null) {
+                        val dataQR = intent.getStringExtra(getDataQr)
+                        ContactUtils.sendSmsWithIntent(phoneNumber, dataQR, this)
+                    } else {
+                        Toast.makeText(this, "Can not get phone number", Toast.LENGTH_SHORT).show()
+                    }
+                } ?: Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     companion object {
         const val getDataQr = "GET_DATA_QR"
         const val typeDataQR = "TYPE_DATA_QR"
@@ -35,9 +60,12 @@ class ShowDetailQrActivity :
         window.statusBarColor = getColor(R.color.white01)
         showDataQr()
         initHandle()
+
+
     }
 
     private fun initHandle() {
+        val dataQR = intent.getStringExtra(getDataQr)
         binding.apply {
             backBtn.clicks {
                 finish()
@@ -45,6 +73,83 @@ class ShowDetailQrActivity :
             shareBtn.clicks {
 
             }
+            viewSendSMS.clicks {
+                pickContactNumber()
+            }
+            viewSendEmail.clicks {
+                if (dataQR != null) {
+                    ContactUtils.sendEmail("", dataQR, this@ShowDetailQrActivity)
+                }
+
+            }
+            viewCopyText.clicks {
+                if (dataQR != null) {
+                    ContactUtils.copyToClipboard(this@ShowDetailQrActivity, dataQR)
+                }
+            }
+
+            viewOpenUrl.clicks {
+                if (dataQR != null) {
+                    openURL(this@ShowDetailQrActivity, dataQR)
+                }
+            }
+
+            viewCopyUrl.clicks {
+                if (dataQR != null) {
+                    ContactUtils.copyToClipboard(this@ShowDetailQrActivity, dataQR)
+                }
+            }
+            viewSendSMSType.clicks {
+                if (dataQR != null) {
+                    val phone = regexPhoneNumberAndText(dataQR)?.first
+                    val textSend = regexPhoneNumberAndText(dataQR)?.second
+                    ContactUtils.sendSMS(phone, textSend, this@ShowDetailQrActivity)
+                }
+            }
+            viewCopySMS.clicks {
+                if (dataQR != null) {
+                    ContactUtils.copyToClipboard(this@ShowDetailQrActivity, dataQR)
+                }
+            }
+            viewConnectWifi.clicks {
+                openWifiSettings(this@ShowDetailQrActivity)
+            }
+            viewCopyPass.clicks {
+                if (dataQR != null) {
+                    val checkGetPass = getWifiPasswordOrNull(dataQR)
+                    if (checkGetPass == null) {
+                        Toast.makeText(this@ShowDetailQrActivity, "Error", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        ContactUtils.copyToClipboard(this@ShowDetailQrActivity, checkGetPass)
+                    }
+                }
+
+            }
+            viewCopyWifi.clicks {
+                if (dataQR != null) {
+                    ContactUtils.copyToClipboard(this@ShowDetailQrActivity, dataQR)
+                }
+            }
+
+            viewSendMail.clicks {
+                if (dataQR != null) {
+                    val emailData = parseMail(dataQR)
+                    if (emailData != null) {
+                        ContactUtils.sendEmailViaGmail(this@ShowDetailQrActivity,emailData.to,emailData.subject,emailData.body)
+                    } else {
+                        println("Error!")
+                    }
+                }
+            }
+            viewCopyEmail.clicks {
+                if (dataQR != null) {
+                    ContactUtils.copyToClipboard(this@ShowDetailQrActivity, dataQR)
+                }
+            }
+
+
+
         }
     }
 
@@ -150,7 +255,7 @@ class ShowDetailQrActivity :
             }
 
             "GEO" -> {
-                binding.typeQrImg.setImageResource(R.drawable.iconx)
+                binding.typeQrImg.setImageResource(R.drawable.geo)
                 binding.textTypeQr.text = "GEO"
                 binding.textDetailQr.text = dataQR
             }
@@ -160,7 +265,7 @@ class ShowDetailQrActivity :
 
     }
 
-    fun generateQRCode(text: String, width: Int = 512, height: Int = 512): Bitmap {
+    private fun generateQRCode(text: String, width: Int = 512, height: Int = 512): Bitmap {
         val bitMatrix = MultiFormatWriter().encode(
             text,
             BarcodeFormat.QR_CODE,
@@ -172,6 +277,15 @@ class ShowDetailQrActivity :
                 for (y in 0 until height) {
                     setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
                 }
+            }
+        }
+    }
+
+    private fun pickContactNumber() {
+        ContactUtils.pickPhoneNumber(this, pickContactLauncher) { phoneNumber ->
+            if (phoneNumber != null) {
+            } else {
+                Toast.makeText(this, "Can not choose contact", Toast.LENGTH_SHORT).show()
             }
         }
     }

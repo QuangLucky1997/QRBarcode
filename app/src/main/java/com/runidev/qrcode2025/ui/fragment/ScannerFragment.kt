@@ -1,14 +1,16 @@
 package com.runidev.qrcode2025.ui.fragment
 
 import android.Manifest
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.OptIn
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
@@ -21,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import com.google.mlkit.vision.barcode.BarcodeScanner
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
@@ -30,9 +33,9 @@ import com.runidev.qrcode2025.base.BaseFragment
 import com.runidev.qrcode2025.dao.QrCodeService
 import com.runidev.qrcode2025.helper.QRType
 import com.runidev.qrcode2025.modelRoom.QrCode
-import com.runidev.qrcode2025.ui.activity.HomeActivity
 import com.runidev.qrcode2025.ui.activity.ShowDetailQrActivity
 import com.runidev.qrcode2025.ui.viewModel.QrBarcodeViewModel
+import com.runidev.qrcode2025.util.ext.clicks
 import com.runidev.qrcode2025.util.timestampToString
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -42,11 +45,19 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ScannerFragment : BaseFragment<FramentScannerBinding>() {
-
+    private var isFlashOn = false
+    private var camera: androidx.camera.core.Camera? = null
     private lateinit var barcodeScanner: BarcodeScanner
     private lateinit var cameraExecutor: ExecutorService
     private var isCameraInitialized = false
     private val qrcodeViewModel: QrBarcodeViewModel by viewModels()
+    private val pickImageLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                detectQrFromImage(uri)
+            }
+        }
+
 
     @Inject
     lateinit var qrCodeService: QrCodeService
@@ -63,9 +74,10 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
         } else {
             requestCameraPermission()
         }
+        handleButton()
     }
 
-    fun startCamera() {
+    private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
@@ -79,16 +91,19 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
             try {
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
+                camera = cameraProvider.bindToLifecycle(
                     this as LifecycleOwner, cameraSelector, preview, imageAnalysis
                 )
             } catch (e: Exception) {
                 Timber.tag("Main123").e(e, "Error start camera")
             }
         }, ContextCompat.getMainExecutor(requireContext()))
+
+
     }
 
-    fun startAnimation() {
+    // animation scan
+    private fun startAnimation() {
         binding.scanFrame.post {
             val frameHeight = binding.scanFrame.height
             val lineHeight = binding.scanLine.height
@@ -225,8 +240,7 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
 
     private fun hasCameraPermission(): Boolean {
         return ActivityCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.CAMERA
+            requireContext(), Manifest.permission.CAMERA
         ) == PackageManager.PERMISSION_GRANTED
     }
 
@@ -236,9 +250,7 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
 
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == CAMERA_PERMISSION_CODE) {
@@ -257,4 +269,78 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
     }
 
 
+    private fun handleButton() {
+        binding.apply {
+            btnGallery.clicks {
+                pickImageLauncher.launch("image/*")
+
+            }
+            btnFlash.clicks {
+                if (isFlashOn) {
+                    toggleFlash(true)
+                } else
+                    toggleFlash(false)
+            }
+
+        }
+    }
+
+    // Touch ON/OFF Flash
+    private fun toggleFlash(enable: Boolean) {
+        isFlashOn = !isFlashOn
+        camera?.cameraControl?.enableTorch(enable)
+        val iconRes = if (isFlashOn) R.drawable.ic_flash else R.drawable.ic_un_plash
+        binding.btnFlash.setImageResource(iconRes)
+    }
+
+    // detect QRCode from device
+    private fun detectQrFromImage(imageUri: Uri) {
+        try {
+            val inputImage = InputImage.fromFilePath(requireContext(), imageUri)
+            val scanner = BarcodeScanning.getClient(
+                BarcodeScannerOptions.Builder()
+                    .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
+                    .build()
+            )
+            scanner.process(inputImage)
+                .addOnSuccessListener { barcodes ->
+                    if (barcodes.isNotEmpty()) {
+                        val qrValue = barcodes.first().rawValue
+                        val typeQR = barcodes.first().valueType
+                        val qrType = mapBarcodeTypeToQrType(typeQR)
+                        val qrIconType = mapBarcodeTypeToQrIconType(typeQR)
+                        val exists = qrCodeService.checkIfDataExistsQrCode(qrValue)
+                        if (exists == 0) {
+                            qrType?.let { type ->
+                                qrValue?.let { value ->
+                                    qrIconType?.let { icon ->
+                                        val qrData = QrCode(
+                                            idQrCode = 0,
+                                            type,
+                                            timestampToString(System.currentTimeMillis()),
+                                            value,
+                                            isScan = true,
+                                            icon
+                                        )
+                                        qrcodeViewModel.insertQrCode(qrData)
+                                    }
+                                }
+                            }
+                        } else {
+                            //Toast.makeText(requireContext(), "Data already exists", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Timber.tag("QR_DETECT").d("NO QR code")
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Timber.tag("QR_DETECT").e(e, "Error Detect QR")
+                }
+
+        } catch (e: Exception) {
+            Timber.tag("QR_DETECT").e(e, "Error Detect QR")
+        }
+    }
+
 }
+

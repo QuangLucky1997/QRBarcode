@@ -55,7 +55,6 @@ class QrCodeByScanAdapter @Inject constructor() :
                 else R.drawable.right_arrow
             )
 
-            // Xử lý click
             viewItemQrScanHistory.setOnClickListener {
                 if (isDeleteMode) {
                     if (selectedItems.contains(item)) {

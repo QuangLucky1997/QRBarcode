@@ -10,11 +10,15 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.provider.Settings
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +39,7 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.core.net.toUri
 
 fun Context.changeWallpaper(path: String?, typeSetWall: Int) {
     if (path == null) {
@@ -240,7 +245,8 @@ fun saveToGallery(context: Context, bitmap: Bitmap, albumName: String) {
             }
         }
     } else {
-        val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + albumName
+        val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+            .toString() + File.separator + albumName
         val file = File(imagesDir)
         if (!file.exists()) {
             file.mkdir()
@@ -261,23 +267,51 @@ fun shareImageFromImageView(context: Context, imageView: ImageView) {
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
     fos.flush()
     fos.close()
-
-    // Lấy URI an toàn bằng FileProvider
     val contentUri = FileProvider.getUriForFile(
         context,
         "${context.packageName}.fileprovider",
         file
     )
-
-    // Tạo Intent chia sẻ
     val shareIntent = Intent(Intent.ACTION_SEND).apply {
         type = "image/png"
         putExtra(Intent.EXTRA_STREAM, contentUri)
         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     }
 
-    // Gửi đi
+
     context.startActivity(Intent.createChooser(shareIntent, "Chia sẻ mã QR qua..."))
+
+
+}
+
+fun openURL(context: Context, urlData: String) {
+    var urlFormat = urlData
+    if (!urlFormat.startsWith("http://") && !urlFormat.startsWith("https://")) {
+        urlFormat = "http://$urlFormat"
+    }
+    val browserIntent = Intent(Intent.ACTION_VIEW, urlFormat.toUri())
+    context.startActivity(browserIntent)
+}
+
+fun regexPhoneNumberAndText(dataSMS: String): Pair<String, String>? {
+    val pattern = Regex("^SMSTO:([^:]+):(.+)$")
+    val match = pattern.find(dataSMS)
+    return if (match != null) {
+        val phoneNumber = match.groupValues[1]
+        val message = match.groupValues[2]
+        Pair(phoneNumber, message)
+    } else {
+        null
+    }
+}
+
+ fun openWifiSettings(context: Context) {
+    val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+    context.startActivity(intent)
+}
+
+fun getWifiPasswordOrNull(raw: String): String? {
+    return Regex("P:([^;]+)").find(raw)?.groupValues?.get(1)
 }
 
 

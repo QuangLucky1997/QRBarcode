@@ -1,4 +1,4 @@
-package com.runidev.qrcode2025.helper
+package com.runidev.qrcode2025.enumData
 
 import android.support.annotation.DrawableRes
 import com.runidev.qrcode2025.R
@@ -22,6 +22,6 @@ enum class QrCreate (val label: String, @DrawableRes val iconRes: Int){
 
     TWITTER("Twitter", R.drawable.x),
     SPOTIFY("Spotify", R.drawable.spotify),
-    VIBER("Viber",R.drawable.viber)
+    VIBER("Viber", R.drawable.viber)
 
 }

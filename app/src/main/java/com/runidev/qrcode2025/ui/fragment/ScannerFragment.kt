@@ -31,12 +31,15 @@ import com.runidev.qrcode2025.R
 import com.runidev.qrcode2025.databinding.FramentScannerBinding
 import com.runidev.qrcode2025.base.BaseFragment
 import com.runidev.qrcode2025.dao.QrCodeService
-import com.runidev.qrcode2025.helper.QRType
+import com.runidev.qrcode2025.enumData.QRType
+import com.runidev.qrcode2025.helper.Preferences
 import com.runidev.qrcode2025.modelRoom.QrCode
 import com.runidev.qrcode2025.ui.activity.ShowDetailQrActivity
 import com.runidev.qrcode2025.ui.viewModel.QrBarcodeViewModel
 import com.runidev.qrcode2025.util.ext.clicks
+import com.runidev.qrcode2025.util.playBeepSound
 import com.runidev.qrcode2025.util.timestampToString
+import com.runidev.qrcode2025.util.vibrate
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
@@ -50,6 +53,9 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
     private lateinit var barcodeScanner: BarcodeScanner
     private lateinit var cameraExecutor: ExecutorService
     private var isCameraInitialized = false
+
+    @Inject
+    lateinit var preferences: Preferences
     private val qrcodeViewModel: QrBarcodeViewModel by viewModels()
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
@@ -130,7 +136,8 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
                 mediaImage, imageProxy.imageInfo.rotationDegrees
             )
             barcodeScanner.process(inputImage).addOnSuccessListener { barcodes ->
-                barcodes.forEach { barcode ->
+                if (barcodes.isNotEmpty()) {
+                    val barcode = barcodes.first()
                     processBarcode(barcode)
                 }
             }.addOnFailureListener { e ->
@@ -151,6 +158,12 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
         val qrIconType = mapBarcodeTypeToQrIconType(barcode.valueType) ?: return
         val exists = qrCodeService.checkIfDataExistsQrCode(rawValue)
         if (exists == 0) {
+            if (preferences.isBeep.get()) {
+                playBeepSound(requireActivity())
+            }
+            if (preferences.isVibrate.get()) {
+                vibrate(requireActivity(), 200)
+            }
             val qrData = QrCode(
                 0,
                 qrType,
@@ -160,8 +173,9 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
                 qrIconType
             )
             qrcodeViewModel.insertQrCode(qrData)
+            sendDataSkipUI(qrType.name, rawValue)
         } else {
-            //Toast.makeText(requireContext(), "Data already exists", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Data already exists", Toast.LENGTH_SHORT).show()
         }
 
     }

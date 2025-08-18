@@ -10,9 +10,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.provider.Settings
@@ -40,6 +43,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.net.toUri
+import com.runidev.qrcode2025.R
 
 fun Context.changeWallpaper(path: String?, typeSetWall: Int) {
     if (path == null) {
@@ -312,6 +316,27 @@ fun regexPhoneNumberAndText(dataSMS: String): Pair<String, String>? {
 
 fun getWifiPasswordOrNull(raw: String): String? {
     return Regex("P:([^;]+)").find(raw)?.groupValues?.get(1)
+}
+
+
+fun playBeepSound(context: Context) {
+    val mediaPlayer = MediaPlayer.create(context, R.raw.beep) // beep.mp3 nằm trong res/raw
+    mediaPlayer?.start()
+
+    mediaPlayer?.setOnCompletionListener {
+        it.release()
+    }
+}
+
+@Suppress("DEPRECATION")
+fun vibrate(context: Context, duration: Long = 200) {
+    val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val effect = VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE)
+        vibrator.vibrate(effect)
+    } else {
+        vibrator.vibrate(duration)
+    }
 }
 
 

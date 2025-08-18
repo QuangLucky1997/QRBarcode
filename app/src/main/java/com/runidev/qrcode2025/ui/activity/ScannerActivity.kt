@@ -22,7 +22,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.runidev.qrcode2025.base.BaseActivity
 import com.runidev.qrcode2025.dao.QrCodeService
 import com.runidev.qrcode2025.databinding.ActivityScannerBinding
-import com.runidev.qrcode2025.helper.QRType
+import com.runidev.qrcode2025.enumData.QRType
 import com.runidev.qrcode2025.helper.lightStatusBar
 import com.runidev.qrcode2025.modelRoom.QrCode
 import com.runidev.qrcode2025.util.timestampToString

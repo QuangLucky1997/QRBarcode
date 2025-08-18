@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.runidev.qrcode2025.databinding.FragmentCreateBinding
 import com.runidev.qrcode2025.base.BaseFragment
-import com.runidev.qrcode2025.helper.QrCreate
+import com.runidev.qrcode2025.enumData.QrCreate
 import com.runidev.qrcode2025.ui.activity.ClipboardActivity
 import com.runidev.qrcode2025.ui.activity.FacebookActivity
 import com.runidev.qrcode2025.ui.activity.HomeActivity

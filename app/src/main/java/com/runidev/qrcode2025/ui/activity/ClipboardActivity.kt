@@ -10,8 +10,8 @@ import com.runidev.qrcode2025.R
 import com.runidev.qrcode2025.base.BaseActivity
 import com.runidev.qrcode2025.dao.QrCodeService
 import com.runidev.qrcode2025.databinding.ActivityClipboardBinding
-import com.runidev.qrcode2025.helper.QRType
-import com.runidev.qrcode2025.helper.QrCreate
+import com.runidev.qrcode2025.enumData.QRType
+import com.runidev.qrcode2025.enumData.QrCreate
 import com.runidev.qrcode2025.helper.lightStatusBar
 import com.runidev.qrcode2025.modelRoom.QrCode
 import com.runidev.qrcode2025.ui.viewModel.QrBarcodeViewModel

@@ -1,7 +1,7 @@
 package com.runidev.qrcode2025.modelRoom
 
 import androidx.room.TypeConverter
-import com.runidev.qrcode2025.helper.QRType
+import com.runidev.qrcode2025.enumData.QRType
 
 class QRTypeConverter {
     @TypeConverter

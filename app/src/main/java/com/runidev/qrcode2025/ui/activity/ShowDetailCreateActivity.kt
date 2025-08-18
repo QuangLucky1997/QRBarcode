@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.runidev.qrcode2025.R
 import com.runidev.qrcode2025.base.BaseActivity
 import com.runidev.qrcode2025.databinding.ActivityShowQrCreateBinding
-import com.runidev.qrcode2025.helper.QRType
+import com.runidev.qrcode2025.enumData.QRType
 import com.runidev.qrcode2025.helper.lightStatusBar
 import com.runidev.qrcode2025.util.ext.clicks
 import com.runidev.qrcode2025.util.generateQRCode

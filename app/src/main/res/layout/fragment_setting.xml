@@ -74,7 +74,7 @@
                         android:layout_toEndOf="@+id/imgSound"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/switchPIP"
+                        app:layout_constraintEnd_toStartOf="@+id/switchBeep"
                         app:layout_constraintStart_toStartOf="@+id/imgSound"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -96,7 +96,7 @@
                     </LinearLayout>
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switchPIP"
+                        android:id="@+id/switchBeep"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"

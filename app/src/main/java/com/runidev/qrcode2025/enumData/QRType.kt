@@ -1,4 +1,4 @@
-package com.runidev.qrcode2025.helper
+package com.runidev.qrcode2025.enumData
 
 enum class QRType {
     URL,

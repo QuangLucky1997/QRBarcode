@@ -5,7 +5,7 @@ import androidx.annotation.ColorInt
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.runidev.qrcode2025.helper.QRType
+import com.runidev.qrcode2025.enumData.QRType
 import java.util.Date
 
 @Entity

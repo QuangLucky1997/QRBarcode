@@ -12,6 +12,7 @@ import com.runidev.qrcode2025.ui.activity.ClipboardActivity
 import com.runidev.qrcode2025.ui.activity.FacebookActivity
 import com.runidev.qrcode2025.ui.activity.HomeActivity
 import com.runidev.qrcode2025.ui.activity.InstagramActivity
+import com.runidev.qrcode2025.ui.activity.MailActivity
 import com.runidev.qrcode2025.ui.activity.PaypalActivity
 import com.runidev.qrcode2025.ui.activity.PhoneActivity
 import com.runidev.qrcode2025.ui.activity.SMSActivity
@@ -62,6 +63,7 @@ class CreateFragment : BaseFragment<FragmentCreateBinding>() {
                 "Text" -> moveActivity(TextActivity())
                 "Phone" -> moveActivity(PhoneActivity())
                 "Viber" -> moveActivity(ViberActivity())
+                "E-mail"->moveActivity(MailActivity())
             }
         }
     }

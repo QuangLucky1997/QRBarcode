@@ -339,6 +339,23 @@ fun vibrate(context: Context, duration: Long = 200) {
     }
 }
 
+fun openSearch(context: Context, engine: String, query: String) {
+    val url = when (engine) {
+        "Google" -> "https://www.google.com/search?q=$query"
+        "Bing" -> "https://www.bing.com/search?q=$query"
+        "Yahoo" -> "https://search.yahoo.com/search?p=$query"
+        else -> "https://www.google.com/search?q=$query"
+    }
+    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+    context.startActivity(intent)
+}
+
+
+fun getAppVersion(context: Context): String? {
+    val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+    return packageInfo.versionName // ví dụ "1.2.3"
+}
+
 
 
 

@@ -18,12 +18,15 @@ import com.runidev.qrcode2025.util.parseSmsUri
 import com.runidev.qrcode2025.util.parseWifiString
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.graphics.createBitmap
+import androidx.datastore.preferences.core.Preferences
 import com.runidev.qrcode2025.util.ContactUtils
 import com.runidev.qrcode2025.util.ext.clicks
 import com.runidev.qrcode2025.util.getWifiPasswordOrNull
+import com.runidev.qrcode2025.util.openSearch
 import com.runidev.qrcode2025.util.openURL
 import com.runidev.qrcode2025.util.openWifiSettings
 import com.runidev.qrcode2025.util.regexPhoneNumberAndText
+import javax.inject.Inject
 import kotlin.toString
 
 
@@ -47,6 +50,8 @@ class ShowDetailQrActivity :
                 Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show()
             }
         }
+
+    @Inject lateinit var prefs : com.runidev.qrcode2025.helper.Preferences
 
     companion object {
         const val getDataQr = "GET_DATA_QR"
@@ -90,7 +95,8 @@ class ShowDetailQrActivity :
 
             viewOpenUrl.clicks {
                 if (dataQR != null) {
-                    openURL(this@ShowDetailQrActivity, dataQR)
+                   // openURL(this@ShowDetailQrActivity, dataQR)
+                    openSearch(this@ShowDetailQrActivity,prefs.dataSearch.get(),dataQR)
                 }
             }
 

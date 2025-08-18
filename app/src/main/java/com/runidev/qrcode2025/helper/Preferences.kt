@@ -9,4 +9,7 @@ class Preferences  @Inject constructor(private val rxPref: RxSharedPreferences) 
     val isAutoCopy = rxPref.getBoolean("isAutoCopy", false)
     val isVibrate = rxPref.getBoolean("isVibrate", true)
 
+    val positionSearchEngine = rxPref.getInteger("positionSearchEngine", 0)
+    val dataSearch = rxPref.getString("DATA_SEARCH", "Google")
+
 }

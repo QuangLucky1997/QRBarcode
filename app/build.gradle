@@ -5,8 +5,8 @@ plugins {
 
     alias(libs.plugins.hilt)
     id("kotlin-kapt")
-    //id("com.google.gms.google-services")
-    //id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -69,9 +69,9 @@ dependencies {
     implementation(libs.dots.indicator)
     //Glide
     implementation(libs.glide)
-    //Ads
-    //implementation(libs.shimmer)
-    //implementation(libs.admob)
+    Ads
+   // implementation(libs.shimmer)
+    implementation(libs.admob)
 
 
     //ssd, ssp
@@ -151,8 +151,6 @@ dependencies {
     implementation(libs.androidx.camera.extensions)
     implementation(libs.guava)
     implementation(libs.zxing.android.embedded)
-    implementation 'com.github.Ajinkrishnak:CountryCodePicker:1.0.3'
-
     implementation(libs.barcode.scanning)
 
 

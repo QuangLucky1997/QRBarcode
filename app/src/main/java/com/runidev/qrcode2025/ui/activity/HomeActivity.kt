@@ -13,6 +13,9 @@ import androidx.core.app.OnNewIntentProvider
 
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -58,12 +61,21 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lightStatusBar()
+        MobileAds.initialize(this) {}
         window.statusBarColor = Color.WHITE
         cameraExecutor = Executors.newSingleThreadExecutor()
         barcodeScanner = BarcodeScanning.getClient()
         initView()
         initHandle()
         checkCameraPermission()
+        loadBannerAdsHome()
+    }
+
+    private fun loadBannerAdsHome() {
+        binding.apply {
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
+        }
     }
 
 

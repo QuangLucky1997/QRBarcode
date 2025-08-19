@@ -69,7 +69,6 @@ dependencies {
     implementation(libs.dots.indicator)
     //Glide
     implementation(libs.glide)
-    Ads
    // implementation(libs.shimmer)
     implementation(libs.admob)
 

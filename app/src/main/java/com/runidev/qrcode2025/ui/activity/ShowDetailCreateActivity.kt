@@ -7,6 +7,8 @@ import android.widget.Toast
 
 
 import com.runidev.qrcode2025.R
+import com.runidev.qrcode2025.adsBase.AdLayoutType
+import com.runidev.qrcode2025.adsBase.BaseNativeAdsHelper
 import com.runidev.qrcode2025.base.BaseActivity
 import com.runidev.qrcode2025.databinding.ActivityShowQrCreateBinding
 import com.runidev.qrcode2025.enumData.QRType
@@ -31,6 +33,12 @@ class ShowDetailCreateActivity :
         window.statusBarColor = getColor(R.color.blue3)
         initShowData()
         initHandleFunc()
+        BaseNativeAdsHelper.loadNativeAd(
+            context = this,
+            adUnitId = "ca-app-pub-3940256099942544/2247696110",
+            layoutType = AdLayoutType.MEDIUM,
+            container = binding.viewAds
+        )
     }
 
     private fun initHandleFunc() {

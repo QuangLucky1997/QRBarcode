@@ -54,6 +54,9 @@ class YoutubeActivity : BaseActivity<ActivityYtbBinding>(ActivityYtbBinding::inf
                 cardUrl.isGone = true
                 edtYtbIdLayout.hint = "Enter ChannelID"
             }
+            bacKImg.clicks {
+                finish()
+            }
         }
     }
 

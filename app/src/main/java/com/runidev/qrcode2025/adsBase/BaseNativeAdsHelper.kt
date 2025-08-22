@@ -10,6 +10,7 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.runidev.qrcode2025.R
@@ -88,16 +89,16 @@ object BaseNativeAdsHelper {
             adView.iconView = it
         }
 
-//        // Advertiser
-//        adView.findViewById<TextView?>(R.id.ad_advertiser)?.let {
-//            if (nativeAd.advertiser == null) {
-//                it.visibility = View.GONE
-//            } else {
-//                it.text = nativeAd.advertiser
-//                it.visibility = View.VISIBLE
-//            }
-//            adView.advertiserView = it
-//        }
+        // Advertiser
+        adView.findViewById<TextView?>(R.id.ad_advertiser)?.let {
+            if (nativeAd.advertiser == null) {
+                it.visibility = View.GONE
+            } else {
+                it.text = nativeAd.advertiser
+                it.visibility = View.VISIBLE
+            }
+            adView.advertiserView = it
+        }
 
         // CTA Button
         adView.findViewById<Button?>(R.id.ad_call_to_action)?.let {
@@ -110,8 +111,8 @@ object BaseNativeAdsHelper {
             adView.callToActionView = it
         }
 
-//        // Media (medium layout mới có)
-//        adView.findViewById<ImageView?>(R.id.ad_media)?.let {
+        // Media (medium layout mới có)
+        adView.findViewById<MediaView?>(R.id.ad_media)?.let { mediaView ->
 //            if (nativeAd.mediaContent != null) {
 //                it.setImageDrawable(nativeAd.mediaContent?.mainImage)
 //                it.visibility = View.VISIBLE
@@ -119,9 +120,12 @@ object BaseNativeAdsHelper {
 //                it.visibility = View.GONE
 //            }
 //            adView.mediaView = null // optional
-//        }
-//
-//        adView.setNativeAd(nativeAd)
+
+            adView.mediaView = mediaView
+            mediaView.mediaContent = nativeAd.mediaContent
+        }
+
+        adView.setNativeAd(nativeAd)
     }
 }
 

@@ -19,6 +19,8 @@ import com.runidev.qrcode2025.util.parseWifiString
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.graphics.createBitmap
 import androidx.datastore.preferences.core.Preferences
+import com.runidev.qrcode2025.adsBase.AdLayoutType
+import com.runidev.qrcode2025.adsBase.BaseNativeAdsHelper
 import com.runidev.qrcode2025.util.ContactUtils
 import com.runidev.qrcode2025.util.ext.clicks
 import com.runidev.qrcode2025.util.getWifiPasswordOrNull
@@ -65,6 +67,12 @@ class ShowDetailQrActivity :
         window.statusBarColor = getColor(R.color.white01)
         showDataQr()
         initHandle()
+        BaseNativeAdsHelper.loadNativeAd(
+            context = this,
+            adUnitId = "ca-app-pub-3940256099942544/2247696110",
+            layoutType = AdLayoutType.SMALL,
+            container = binding.viewAds
+        )
 
 
     }

@@ -121,7 +121,12 @@ class SMSActivity   : BaseActivity<ActivitySmsBinding>(ActivitySmsBinding::infla
                     }
                 }
             })
+                backImg.clicks {
+                    finish()
+                }
         }
+
+
 
 
 

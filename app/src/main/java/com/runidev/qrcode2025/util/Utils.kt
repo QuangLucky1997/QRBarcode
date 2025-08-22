@@ -21,6 +21,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
@@ -44,6 +45,8 @@ import java.util.Date
 import java.util.Locale
 import androidx.core.net.toUri
 import com.runidev.qrcode2025.R
+import com.runidev.qrcode2025.language.LanguageActivity
+import com.runidev.qrcode2025.ui.activity.HomeActivity
 
 fun Context.changeWallpaper(path: String?, typeSetWall: Int) {
     if (path == null) {
@@ -355,6 +358,22 @@ fun getAppVersion(context: Context): String? {
     val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
     return packageInfo.versionName // ví dụ "1.2.3"
 }
+
+fun AppCompatActivity.startMain(doAfterTask: () -> Unit = {}) {
+    val intent = Intent(this, HomeActivity::class.java)
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(intent)
+    doAfterTask()
+}
+fun AppCompatActivity.startLanguageActivity(doAfterTask: () -> Unit = {}) {
+    startActivity(
+        Intent(this, LanguageActivity::class.java)
+    )
+    doAfterTask()
+}
+
+
 
 
 

@@ -88,6 +88,9 @@ class XActivity : BaseActivity<ActivityXBinding>(ActivityXBinding::inflate) {
                     ).show()
                 }
             }
+            bacKImg.clicks {
+                finish()
+            }
 
         }
     }

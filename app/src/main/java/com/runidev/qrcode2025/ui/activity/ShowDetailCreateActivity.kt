@@ -76,22 +76,27 @@ class ShowDetailCreateActivity :
             when (dataTypeQr) {
                 QRType.TEXT.name -> {
                     imgIconQr.setImageResource(R.drawable.text_qr)
+                    typeQRCreate.text = QRType.TEXT.name
                 }
 
                 QRType.URL.name -> {
                     imgIconQr.setImageResource(R.drawable.url)
+                    typeQRCreate.text = QRType.URL.name
                 }
 
                 QRType.SMS.name -> {
                     imgIconQr.setImageResource(R.drawable.sendsms)
+                    typeQRCreate.text = QRType.SMS.name
                 }
 
                 QRType.EMAIL.name -> {
                     imgIconQr.setImageResource(R.drawable.sendemail)
+                    typeQRCreate.text = QRType.EMAIL.name
                 }
 
                 QRType.PHONE.name -> {
                     imgIconQr.setImageResource(R.drawable.baseline_phone_24)
+                    typeQRCreate.text = QRType.PHONE.name
                 }
 
                 QRType.CLIPBOARD.name -> {

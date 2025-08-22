@@ -12,4 +12,8 @@ class Preferences  @Inject constructor(private val rxPref: RxSharedPreferences) 
     val positionSearchEngine = rxPref.getInteger("positionSearchEngine", 0)
     val dataSearch = rxPref.getString("DATA_SEARCH", "Google")
 
+
+    val keyAppLanguage = rxPref.getString("keyAppLanguage", "en")
+    val isConfigLanguage = rxPref.getBoolean("isConfigLanguage", false)
+
 }

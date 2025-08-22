@@ -64,7 +64,7 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center_vertical"
-                app:cardBackgroundColor="@color/bg_service"
+                app:cardBackgroundColor="@color/green"
                 app:cardCornerRadius="@dimen/_10sdp"
                 app:cardElevation="@dimen/_5sdp">
 

@@ -91,6 +91,9 @@ class PaypalActivity : BaseActivity<ActivityPaypalBinding>(ActivityPaypalBinding
                     ).show()
                 }
             }
+            bacKImg.clicks {
+                finish()
+            }
 
         }
     }

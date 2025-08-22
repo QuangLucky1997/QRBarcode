@@ -6,8 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.runidev.qrcode2025.helper.Preferences
+import com.runidev.qrcode2025.inject.App.Companion.app
+import com.uber.autodispose.android.lifecycle.scope
+import com.uber.autodispose.autoDispose
+import java.util.Locale
+import javax.inject.Inject
 
 abstract class BaseFragment<V : ViewBinding> : Fragment() {
+
+    @Inject
+    lateinit var preferences: Preferences
 
     lateinit var binding: V
 
@@ -22,7 +31,23 @@ abstract class BaseFragment<V : ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onViewCreated()
+        app.prefs
+            .keyAppLanguage
+            .asObservable()
+            .autoDispose(scope())
+            .subscribe { language ->
+                initLanguage(language)
+            }
     }
 
     abstract fun onViewCreated()
+
+    private fun initLanguage(language: String) {
+        val locale = Locale(language)
+        val config = resources.configuration.apply {
+            setLocale(locale)
+        }
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
 }

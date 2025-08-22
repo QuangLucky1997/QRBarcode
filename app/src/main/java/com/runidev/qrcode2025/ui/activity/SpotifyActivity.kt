@@ -120,6 +120,9 @@ class SpotifyActivity
                     }
                 }
             })
+            bacKImg.clicks {
+                finish()
+            }
         }
 
 

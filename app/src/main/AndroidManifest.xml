@@ -54,6 +54,7 @@
         <activity android:name=".ui.activity.MailActivity" />
         <activity android:name=".ui.activity.FacebookActivity" />
         <activity android:name=".ui.activity.ShowDetailCreateActivity" />
+        <activity android:name=".language.LanguageActivity"/>
 
 
         <property

@@ -70,6 +70,9 @@ class MailActivity : BaseActivity<ActivityEmailBinding>(ActivityEmailBinding::in
                     ).show()
                 }
             }
+            bacKImg.clicks {
+                finish()
+            }
 
         }
     }

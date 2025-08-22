@@ -77,6 +77,10 @@ class ClipboardActivity :
                     ).show()
                 }
             }
+            backImg.clicks {
+                finish()
+            }
+
 
         }
     }

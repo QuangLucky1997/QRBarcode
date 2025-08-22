@@ -70,6 +70,9 @@ class TextActivity : BaseActivity<ActivityTextBinding>(ActivityTextBinding::infl
                     ).show()
                 }
             }
+            bacKImg.clicks {
+                finish()
+            }
 
         }
     }

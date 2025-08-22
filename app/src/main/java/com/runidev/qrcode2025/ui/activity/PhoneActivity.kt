@@ -69,6 +69,9 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
                     ).show()
                 }
             }
+            bacKImg.clicks {
+                finish()
+            }
 
         }
     }

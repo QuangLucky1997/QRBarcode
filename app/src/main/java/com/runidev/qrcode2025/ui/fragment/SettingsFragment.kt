@@ -2,20 +2,22 @@ package com.runidev.qrcode2025.ui.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.runidev.qrcode2025.BuildConfig
 import com.runidev.qrcode2025.databinding.FragmentSettingBinding
 import com.runidev.qrcode2025.base.BaseFragment
-import com.runidev.qrcode2025.helper.Preferences
+import com.runidev.qrcode2025.language.LanguageActivity
 import com.runidev.qrcode2025.util.ext.clicks
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
-    @Inject lateinit var preferences: Preferences
+//    @Inject
+//    lateinit var preferences: Preferences
     override val _binding: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSettingBinding
         get() = FragmentSettingBinding::inflate
 
@@ -48,6 +50,11 @@ class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
             }
             settingSearch.clicks {
                 showSearchEngineDialog(requireActivity())
+            }
+            settingLanguage.clicks {
+                startActivity(
+                    Intent(requireActivity(), LanguageActivity::class.java)
+                )
             }
         }
     }

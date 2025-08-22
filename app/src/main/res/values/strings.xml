@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">QRCode2025</string>
+
+
+
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="scanner_barcode">Scanner Barcode</string>
     <string name="history_qrcode">History QRCode</string>
@@ -79,4 +82,36 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="feedback">Feedback</string>
     <string name="report_bugs_to_us">Report bugs to us</string>
+
+    <string name="scanText">Scan</string>
+    <string name="createText">Create</string>
+    <string name="historyText">History</string>
+    <string name="settingsText">Setting</string>
+
+
+
+
+    <string name="language_arabic" translatable="false">عربي</string>
+    <string name="language_german" translatable="false">Deutsch</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_spanish" translatable="false">Español</string>
+    <string name="language_french" translatable="false">Français</string>
+    <string name="language_italian" translatable="false">Italiano</string>
+    <string name="language_japanese" translatable="false">日本語</string>
+    <string name="language_korean" translatable="false">한국인</string>
+    <string name="language_dutch" translatable="false">Nederlands</string>
+    <string name="language_polish" translatable="false">Polski</string>
+    <string name="language_portuguese" translatable="false">Português</string>
+    <string name="language_russian" translatable="false">Русский</string>
+    <string name="language_ukrainian" translatable="false">українська</string>
+    <string name="language_chinese" translatable="false">中国人</string>
+    <string name="language_hindi" translatable="false">हिंदी</string>
+    <string name="language_vietnam" translatable="false">Tiếng Việt</string>
+    <string name="language">Language</string>
+
+
+
+
+
+
 </resources>

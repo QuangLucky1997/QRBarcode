@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/backImg"
             android:tint="@color/black"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_back"
@@ -74,7 +75,7 @@
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:layout_margin="@dimen/_2sdp"
-            app:cardBackgroundColor="@color/bg_service"
+            app:cardBackgroundColor="@color/green"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="@dimen/_5sdp">
 

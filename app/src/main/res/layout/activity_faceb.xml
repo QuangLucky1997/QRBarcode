@@ -76,7 +76,7 @@
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:layout_margin="@dimen/_2sdp"
-            app:cardBackgroundColor="@color/bg_service"
+            app:cardBackgroundColor="@color/green"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="@dimen/_5sdp">
 
@@ -217,6 +217,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:inputType="text"
+        android:textColorHint="@color/black"
         android:hint="@string/enter_id_facebook"
         android:padding="@dimen/_10sdp"
         android:paddingBottom="@dimen/_8sdp"

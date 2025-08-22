@@ -54,8 +54,8 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
     private lateinit var cameraExecutor: ExecutorService
     private var isCameraInitialized = false
 
-    @Inject
-    lateinit var preferences: Preferences
+//    @Inject
+//    lateinit var preferences: Preferences
     private val qrcodeViewModel: QrBarcodeViewModel by viewModels()
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->

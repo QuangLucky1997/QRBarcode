@@ -36,7 +36,7 @@ class WebActivity : BaseActivity<ActivityUrlBinding>(ActivityUrlBinding::inflate
         binding.apply {
             tabCreate.clicks {
                 val dataUrl = edtUrl.text.toString().isNotEmpty()
-                if (dataUrl ) {
+                if (dataUrl) {
                     val checkExistData =
                         qrCodeService.checkIfDataExistsQrCode(edtUrl.text.toString())
                     if (checkExistData == 0) {
@@ -74,6 +74,8 @@ class WebActivity : BaseActivity<ActivityUrlBinding>(ActivityUrlBinding::inflate
                 }
             }
 
+
+
             edtUrl.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
@@ -96,11 +98,12 @@ class WebActivity : BaseActivity<ActivityUrlBinding>(ActivityUrlBinding::inflate
                     }
                 }
             })
-
+            backButton.clicks {
+                finish()
+            }
         }
 
-
-
-
     }
+
+
 }

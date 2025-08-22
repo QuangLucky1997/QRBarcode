@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/white">
 
 
     <RelativeLayout
         android:id="@+id/viewHeader"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp">
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
-            android:tint="@color/black"
+            android:id="@+id/backImg"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            tools:ignore="UseAppTint"
             android:layout_margin="@dimen/_10sdp"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"/>
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"
+            tools:ignore="UseAppTint" />
 
         <LinearLayout
             android:id="@+id/tabCreate"
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+
             <ImageView
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/check"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-               />
-            <TextView
                 android:layout_gravity="center_vertical"
-                android:text="@string/create"
-                android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/inter_bold"
-                android:textColor="@color/colorMain"
+                android:src="@drawable/check" />
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/create"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/_14ssp" />
         </LinearLayout>
     </RelativeLayout>
+
     <View
         android:id="@+id/lineGray"
-        app:layout_constraintTop_toBottomOf="@+id/viewHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
         android:background="@color/gray_default"
-        android:layout_height="@dimen/_1sdp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewHeader" />
 
     <RelativeLayout
         android:id="@+id/viewCenter"
-        app:layout_constraintTop_toBottomOf="@+id/lineGray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineGray">
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="@dimen/_2sdp"
             android:id="@+id/cardIconQRType"
-            app:cardElevation="@dimen/_5sdp"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            app:cardBackgroundColor="@color/bg_service"
-            app:cardCornerRadius="@dimen/_10sdp">
+            android:layout_margin="@dimen/_2sdp"
+            app:cardBackgroundColor="@color/green"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -83,8 +88,8 @@
                     android:id="@+id/imgIconQr"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/clipboard"
-                    android:layout_centerInParent="true" />
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/clipboard" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
@@ -92,36 +97,35 @@
 
         <TextView
             android:id="@+id/nameQrCreate"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="@string/clipboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardIconQRType"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/inter_medium"
+            android:text="@string/clipboard"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp" />
 
     </RelativeLayout>
 
     <EditText
-        android:paddingBottom="@dimen/_100sdp"
-        android:paddingStart="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@+id/viewCenter"
         android:id="@+id/edtClipBoard"
         android:layout_width="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="@dimen/_200sdp"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/edit_text_background"
         android:hint="@string/enter_your_text"
-        android:textSize="@dimen/_12ssp"
+        android:inputType="text"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_140sdp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:background="@drawable/edit_text_background"
-        android:inputType="text"
-        android:layout_margin="@dimen/_12sdp"/>
-
-
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewCenter"
+        tools:ignore="RtlSymmetry" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -559,6 +559,24 @@
 
         </LinearLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/viewAds"
+            app:layout_constraintTop_toBottomOf="@+id/viewTypeSMS"
+            app:layout_constraintBottom_toTopOf="@+id/imgShowQrCode"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_70sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/include_native_ad"
+                layout="@layout/custom_native_small_ads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         <ImageView
@@ -567,8 +585,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_150sdp"/>
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

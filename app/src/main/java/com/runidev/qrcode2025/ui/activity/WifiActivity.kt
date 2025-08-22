@@ -117,6 +117,9 @@ class WifiActivity : BaseActivity<ActivityWifiBinding>(ActivityWifiBinding::infl
                     ).show()
                 }
             }
+            bacKImg.clicks {
+                finish()
+            }
 
         }
 

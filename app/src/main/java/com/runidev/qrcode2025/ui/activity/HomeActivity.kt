@@ -108,22 +108,22 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
         TabLayoutMediator(binding.tabLayout, binding.viewPaper) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = "Scan"
+                    tab.text = getString(R.string.scanText)
                     tab.setIcon(R.drawable.scan1)
                 }
 
                 1 -> {
-                    tab.text = "Create"
+                    tab.text = getString(R.string.createText)
                     tab.setIcon(R.drawable.create1)
                 }
 
                 2 -> {
-                    tab.text = "History"
+                    tab.text = getString(R.string.historyText)
                     tab.setIcon(R.drawable.history1)
                 }
 
                 3 -> {
-                    tab.text = "Setting"
+                    tab.text = getString(R.string.settingText)
                     tab.setIcon(R.drawable.setting1)
                 }
             }

@@ -55,6 +55,7 @@
         <activity android:name=".ui.activity.FacebookActivity" />
         <activity android:name=".ui.activity.ShowDetailCreateActivity" />
         <activity android:name=".language.LanguageActivity"/>
+        <activity android:name=".ui.activity.FeedbackActivity"/>
 
 
         <property

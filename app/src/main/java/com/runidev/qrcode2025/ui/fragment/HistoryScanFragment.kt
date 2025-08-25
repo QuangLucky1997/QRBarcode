@@ -1,5 +1,6 @@
 package com.runidev.qrcode2025.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,13 +54,17 @@ class HistoryScanFragment : BaseFragment<FragmentScanHistoryBinding>() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun observeQrCodeData() {
         qrBarcodeViewModel.scannedQrCodes.observe(viewLifecycleOwner) { qrCodes ->
             if (qrCodes.isNotEmpty()) {
                 binding.groupViewNoData.isGone = true
                 adapterHistoryScan.data = qrCodes.toMutableList()
+                adapterHistoryScan.notifyDataSetChanged()
             } else {
                 binding.groupViewNoData.isGone = false
+                adapterHistoryScan.data.clear()
+                adapterHistoryScan.notifyDataSetChanged()
             }
         }
     }

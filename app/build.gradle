@@ -151,9 +151,10 @@ dependencies {
     implementation(libs.guava)
     implementation(libs.zxing.android.embedded)
     implementation(libs.barcode.scanning)
-
-
     implementation (libs.core)
+
+
+    implementation 'com.hbb20:ccp:2.7.3'
 
 
 

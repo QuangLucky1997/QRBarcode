@@ -116,7 +116,18 @@
         android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/viewCenter">
 
+        <com.hbb20.CountryCodePicker
+            android:layout_centerVertical="true"
+            android:id="@+id/phonePicker"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ccp_showFullName="true"
+            app:ccp_showPhoneCode="false"
+            app:ccp_showNameCode="false"/>
+
         <LinearLayout
+            android:layout_toEndOf="@+id/phonePicker"
             android:layout_centerVertical="true"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/_10sdp"

@@ -108,10 +108,16 @@
     <string name="language_hindi" translatable="false">हिंदी</string>
     <string name="language_vietnam" translatable="false">Tiếng Việt</string>
     <string name="language">Language</string>
+    <string name="tell_us_the_problem_you_encountered">Tell us the problem you encountered</string>
+    <string name="type">Type</string>
 
 
 
-
+    <string name ="scanningText">Scanning not working</string>
+    <string name ="tooManyAdsText">Too many ads</string>
+    <string name ="needMoreText">Need more information after scanning</string>
+    <string name ="othersText">Others</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

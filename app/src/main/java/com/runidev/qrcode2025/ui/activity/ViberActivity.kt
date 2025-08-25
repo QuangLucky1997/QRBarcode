@@ -20,6 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ViberActivity : BaseActivity<ActivityViberBinding>(ActivityViberBinding::inflate) {
     private val createQrViewModel: QrBarcodeViewModel by viewModels()
+    private var codeChoose = ""
 
     @Inject
     lateinit var qrCodeService: QrCodeService
@@ -27,54 +28,61 @@ class ViberActivity : BaseActivity<ActivityViberBinding>(ActivityViberBinding::i
         super.onCreateView()
         lightStatusBar()
         window.statusBarColor = Color.WHITE
+        initHandle()
     }
 
-//    private fun initHandle() {
-//        binding.apply {
-//            tabCreate.clicks {
-//                val dataClipBoard = editNumberPhone.text.toString().isNotEmpty()
-//                if (dataClipBoard) {
-//                    val checkExistData =
-//                        qrCodeService.checkIfDataExistsQrCode(editNumberPhone.text.toString())
-//                    if (checkExistData == 0) {
-//                        val clipboardModel = QrCode(
-//                            0,
-//                            QRType.VIBER,
-//                            timestampToString(System.currentTimeMillis()),
-//                            countryCode.selectedCountryCode()[0] + "-${editNumberPhone.text}",
-//                            false,
-//                            R.drawable.viber,
-//                            false
-//                        )
-//                        createQrViewModel.insertQrCode(clipboardModel)
-//                        val intent =
-//                            Intent(this@ViberActivity, ShowDetailCreateActivity::class.java)
-//                        intent.putExtra(
-//                            ShowDetailCreateActivity.dataQrCreate,
-//                            editNumberPhone.text.toString()
-//                        )
-//                        intent.putExtra(
-//                            ShowDetailCreateActivity.typeQrCreate,
-//                            QRType.VIBER.name
-//                        )
-//                        startActivity(intent)
-//                    } else {
-//                        Toast.makeText(
-//                            this@ViberActivity,
-//                            "Data already exists !!",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//
-//                } else {
-//                    Toast.makeText(
-//                        this@ViberActivity,
-//                        "Data is not empty!!",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//        }
-   // }
+    private fun initHandle() {
+        binding.apply {
+            val countryCodeWithPlus = phonePicker.selectedCountryCodeWithPlus
+            val countryCode = phonePicker.selectedCountryCode
+            phonePicker.setOnCountryChangeListener {
+                val code = phonePicker.selectedCountryCodeWithPlus
+                codeChoose = code
+            }
+            tabCreate.clicks {
+                val dataClipBoard = editNumberPhone.text.toString().isNotEmpty()
+                if (dataClipBoard) {
+                    val checkExistData =
+                        qrCodeService.checkIfDataExistsQrCode(editNumberPhone.text.toString())
+                    if (checkExistData == 0) {
+                        val clipboardModel = QrCode(
+                            0,
+                            QRType.VIBER,
+                            timestampToString(System.currentTimeMillis()),
+                            codeChoose + "-${editNumberPhone.text}",
+                            false,
+                            R.drawable.viber,
+                            false
+                        )
+                        createQrViewModel.insertQrCode(clipboardModel)
+                        val intent =
+                            Intent(this@ViberActivity, ShowDetailCreateActivity::class.java)
+                        intent.putExtra(
+                            ShowDetailCreateActivity.dataQrCreate,
+                            editNumberPhone.text.toString()
+                        )
+                        intent.putExtra(
+                            ShowDetailCreateActivity.typeQrCreate,
+                            QRType.VIBER.name
+                        )
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            this@ViberActivity,
+                            "Data already exists !!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                } else {
+                    Toast.makeText(
+                        this@ViberActivity,
+                        "Data is not empty!!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
 
 }

@@ -3,6 +3,7 @@ package com.runidev.qrcode2025.ui.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
@@ -12,11 +13,13 @@ import com.runidev.qrcode2025.base.BaseFragment
 import com.runidev.qrcode2025.language.LanguageActivity
 import com.runidev.qrcode2025.util.ext.clicks
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.core.net.toUri
+import com.runidev.qrcode2025.ui.activity.FeedbackActivity
 
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
-//    @Inject
+    //    @Inject
 //    lateinit var preferences: Preferences
     override val _binding: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSettingBinding
         get() = FragmentSettingBinding::inflate
@@ -30,7 +33,6 @@ class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
     private fun initSetData() {
         binding.apply {
             switchBeep.isChecked = preferences.isBeep.get()
-            switchAutoCopy.isChecked = preferences.isAutoCopy.get()
             switchVibrate.isChecked = preferences.isVibrate.get()
             textDataEngine.text = preferences.dataSearch.get()
             textLicense.text = "Version ${BuildConfig.VERSION_NAME}"
@@ -42,9 +44,6 @@ class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
             switchBeep.setOnCheckedChangeListener { _, isChecked ->
                 preferences.isBeep.set(isChecked)
             }
-            switchAutoCopy.setOnCheckedChangeListener { _, isChecked ->
-                preferences.isAutoCopy.set(isChecked)
-            }
             switchVibrate.setOnCheckedChangeListener { _, isChecked ->
                 preferences.isVibrate.set(isChecked)
             }
@@ -55,6 +54,16 @@ class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
                 startActivity(
                     Intent(requireActivity(), LanguageActivity::class.java)
                 )
+            }
+            settingPrivacy.clicks {
+                val url =
+                    "https://doc-hosting.flycricket.io/qrcode2025-privacy-policy/96d0f2fd-d410-497b-8c5d-5aaf69960227/privacy"
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            settingFeedback.clicks {
+                startActivity(Intent(requireActivity(), FeedbackActivity::class.java))
             }
         }
     }

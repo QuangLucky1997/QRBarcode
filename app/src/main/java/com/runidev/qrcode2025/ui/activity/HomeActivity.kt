@@ -123,7 +123,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(ActivityHomeBinding::infl
                 }
 
                 3 -> {
-                    tab.text = getString(R.string.settingText)
+                    tab.text = getString(R.string.settingsText)
                     tab.setIcon(R.drawable.setting1)
                 }
             }

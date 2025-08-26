@@ -1,11 +1,13 @@
 package com.runidev.qrcode2025.adsBase
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -23,21 +25,29 @@ object BaseNativeAdsHelper {
         context: Context,
         adUnitId: String,
         layoutType: AdLayoutType,
-        container: androidx.constraintlayout.widget.ConstraintLayout
+        container: ConstraintLayout
     ) {
+        // 🔹 Check config từ Firebase
+        if (!RemoteConfigManager.isNativeEnabled()) {
+            container.removeAllViews()
+            container.visibility = View.GONE
+            Log.d("NativeAds", "Native ads disabled by RemoteConfig")
+            return
+        }
+
         val builder = AdLoader.Builder(context, adUnitId)
 
         builder.forNativeAd { nativeAd ->
-            // Hủy ads cũ nếu có
+            // Hủy ads cũ nếu có để tránh memory leak
             currentNativeAd?.destroy()
             currentNativeAd = nativeAd
 
             // Inflate layout theo type
             val adView = when (layoutType) {
                 AdLayoutType.SMALL -> LayoutInflater.from(context)
-                    .inflate(R.layout.custom_native_small_ads, null) as NativeAdView
+                    .inflate(R.layout.custom_native_small_ads, container, false) as NativeAdView
                 AdLayoutType.MEDIUM -> LayoutInflater.from(context)
-                    .inflate(R.layout.custom_medium_ads, null) as NativeAdView
+                    .inflate(R.layout.custom_medium_ads, container, false) as NativeAdView
             }
 
             // Bind dữ liệu
@@ -46,12 +56,15 @@ object BaseNativeAdsHelper {
             // Gắn vào container
             container.removeAllViews()
             container.addView(adView)
+            container.visibility = View.VISIBLE
         }
 
         val adLoader = builder
             .withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    // TODO: Handle lỗi nếu cần
+                    Log.e("NativeAds", "Failed to load: ${adError.message}")
+                    container.removeAllViews()
+                    container.visibility = View.GONE
                 }
             })
             .build()
@@ -66,13 +79,13 @@ object BaseNativeAdsHelper {
             adView.headlineView = this
         }
 
-        // Body (nếu có)
+        // Body
         adView.findViewById<TextView?>(R.id.ad_body)?.let {
-            if (nativeAd.body == null) {
+            if (nativeAd.body.isNullOrEmpty()) {
                 it.visibility = View.GONE
             } else {
-                it.visibility = View.VISIBLE
                 it.text = nativeAd.body
+                it.visibility = View.VISIBLE
             }
             adView.bodyView = it
         }
@@ -83,15 +96,15 @@ object BaseNativeAdsHelper {
             if (icon == null) {
                 it.visibility = View.GONE
             } else {
-                it.visibility = View.VISIBLE
                 it.setImageDrawable(icon.drawable)
+                it.visibility = View.VISIBLE
             }
             adView.iconView = it
         }
 
         // Advertiser
         adView.findViewById<TextView?>(R.id.ad_advertiser)?.let {
-            if (nativeAd.advertiser == null) {
+            if (nativeAd.advertiser.isNullOrEmpty()) {
                 it.visibility = View.GONE
             } else {
                 it.text = nativeAd.advertiser
@@ -100,9 +113,9 @@ object BaseNativeAdsHelper {
             adView.advertiserView = it
         }
 
-        // CTA Button
+        // CTA
         adView.findViewById<Button?>(R.id.ad_call_to_action)?.let {
-            if (nativeAd.callToAction == null) {
+            if (nativeAd.callToAction.isNullOrEmpty()) {
                 it.visibility = View.GONE
             } else {
                 it.text = nativeAd.callToAction
@@ -111,21 +124,18 @@ object BaseNativeAdsHelper {
             adView.callToActionView = it
         }
 
-        // Media (medium layout mới có)
+        // Media
         adView.findViewById<MediaView?>(R.id.ad_media)?.let { mediaView ->
-//            if (nativeAd.mediaContent != null) {
-//                it.setImageDrawable(nativeAd.mediaContent?.mainImage)
-//                it.visibility = View.VISIBLE
-//            } else {
-//                it.visibility = View.GONE
-//            }
-//            adView.mediaView = null // optional
-
-            adView.mediaView = mediaView
             mediaView.mediaContent = nativeAd.mediaContent
+            adView.mediaView = mediaView
         }
 
         adView.setNativeAd(nativeAd)
+    }
+
+    fun destroy() {
+        currentNativeAd?.destroy()
+        currentNativeAd = null
     }
 }
 

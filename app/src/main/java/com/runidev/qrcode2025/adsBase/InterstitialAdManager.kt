@@ -18,14 +18,12 @@ class InterstitialAdManager(private val context: Context) {
 
     companion object {
         private const val TAG = "InterstitialAdManager"
-        private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712" // Test id
+        private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
     }
 
     init {
         loadAd()
     }
-
-    /** 🔹 Load quảng cáo mới */
     private fun loadAd() {
         if (isLoading || interstitialAd != null) return
         if (!RemoteConfigManager.isInterstitialEnabled()) {

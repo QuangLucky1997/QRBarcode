@@ -156,6 +156,8 @@ dependencies {
 
     implementation 'com.hbb20:ccp:2.7.3'
 
+    //implementation 'com.github.tradingview:lightweight-charts-android:4.0.0'
+
 
 
 

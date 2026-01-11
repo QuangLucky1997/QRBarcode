@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.ktx.Firebase
 import com.runidev.qrcode2025.modelRoom.QrCode
 import com.runidev.qrcode2025.repository.QrCodeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +17,7 @@ class QrBarcodeViewModel @Inject constructor(private val qrCodeRepository: QrCod
     val allQrCodes: LiveData<List<QrCode>> = qrCodeRepository.allQrCode
     val scannedQrCodes: LiveData<List<QrCode>> = qrCodeRepository.allQrCodeByScan
     val createdQrCodes: LiveData<List<QrCode>> = qrCodeRepository.allQrCodeByCreate
+
 
 
     private val _insertResult = MutableLiveData<Long>()

@@ -38,11 +38,9 @@ object BaseNativeAdsHelper {
         val builder = AdLoader.Builder(context, adUnitId)
 
         builder.forNativeAd { nativeAd ->
-            // Hủy ads cũ nếu có để tránh memory leak
             currentNativeAd?.destroy()
             currentNativeAd = nativeAd
 
-            // Inflate layout theo type
             val adView = when (layoutType) {
                 AdLayoutType.SMALL -> LayoutInflater.from(context)
                     .inflate(R.layout.custom_native_small_ads, container, false) as NativeAdView
@@ -50,10 +48,9 @@ object BaseNativeAdsHelper {
                     .inflate(R.layout.custom_medium_ads, container, false) as NativeAdView
             }
 
-            // Bind dữ liệu
             populateNativeAdView(nativeAd, adView)
 
-            // Gắn vào container
+
             container.removeAllViews()
             container.addView(adView)
             container.visibility = View.VISIBLE

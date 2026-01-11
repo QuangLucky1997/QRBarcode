@@ -337,11 +337,13 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
                                             icon
                                         )
                                         qrcodeViewModel.insertQrCode(qrData)
+                                        startDetailQrScreen(qrData)
                                     }
                                 }
                             }
+
                         } else {
-                            //Toast.makeText(requireContext(), "Data already exists", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Data already exists", Toast.LENGTH_SHORT).show()
                         }
                     } else {
                         Timber.tag("QR_DETECT").d("NO QR code")
@@ -354,6 +356,15 @@ class ScannerFragment : BaseFragment<FramentScannerBinding>() {
         } catch (e: Exception) {
             Timber.tag("QR_DETECT").e(e, "Error Detect QR")
         }
+    }
+
+
+    private fun startDetailQrScreen(itemQr: QrCode) {
+        val intentDetail = Intent(requireActivity(), ShowDetailQrActivity::class.java).apply {
+            putExtra(ShowDetailQrActivity.getDataQr, itemQr.valueQrCode)
+            putExtra(ShowDetailQrActivity.typeDataQR, itemQr.typeQrCode.name)
+        }
+        startActivity(intentDetail)
     }
 
 }

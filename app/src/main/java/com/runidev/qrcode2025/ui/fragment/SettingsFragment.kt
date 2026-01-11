@@ -14,13 +14,14 @@ import com.runidev.qrcode2025.language.LanguageActivity
 import com.runidev.qrcode2025.util.ext.clicks
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.net.toUri
+import com.runidev.qrcode2025.helper.Preferences
 import com.runidev.qrcode2025.ui.activity.FeedbackActivity
+import com.runidev.qrcode2025.util.ConstantLocal.Constants
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
-    //    @Inject
-//    lateinit var preferences: Preferences
     override val _binding: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSettingBinding
         get() = FragmentSettingBinding::inflate
 
@@ -56,8 +57,8 @@ class SettingsFragment : BaseFragment<FragmentSettingBinding>() {
                 )
             }
             settingPrivacy.clicks {
-                val url =
-                    "https://doc-hosting.flycricket.io/qrcode2025-privacy-policy/96d0f2fd-d410-497b-8c5d-5aaf69960227/privacy"
+                val url = Constants.LINK_POLICY
+
                 val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)

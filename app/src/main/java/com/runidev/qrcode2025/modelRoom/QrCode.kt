@@ -9,8 +9,6 @@ import com.runidev.qrcode2025.enumData.QRType
 import java.util.Date
 
 @Entity
-@kotlinx.serialization.Serializable
-
 data class QrCode(
     @PrimaryKey(autoGenerate = true) var idQrCode: Long,
     @ColumnInfo(name = "TypeQr") val typeQrCode: QRType,
